@@ -1,4 +1,4 @@
-import 'package:btg_fund_manager/domain/entities/transactions/transaction_type.dart';
+import 'package:btg_fund_manager/domain/transactions/entities/transaction_type.dart';
 
 class FundTransaction {
   final String fundId;

@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:btg_fund_manager/domain/entities/entities.dart'
-    show FundTransaction, TransactionType;
+import 'package:btg_fund_manager/domain/core/entities.dart' show FundTransaction, TransactionType;
 
 final fundTransactionHistoryProvider = FutureProvider<List<FundTransaction>>((ref) async {
   // Simulación de delay

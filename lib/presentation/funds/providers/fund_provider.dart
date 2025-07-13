@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:btg_fund_manager/domain/entities/entities.dart' show Fund;
+import 'package:btg_fund_manager/domain/core/entities.dart' show Fund;
 
 final fundListProvider = FutureProvider<List<Fund>>((ref) async {
   // Simulación de delay

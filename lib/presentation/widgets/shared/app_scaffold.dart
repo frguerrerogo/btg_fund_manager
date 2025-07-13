@@ -1,6 +1,6 @@
 import 'package:btg_fund_manager/core/core.dart'
     show AppTextStyles, HomeRoute, TransactionsRoute, SettingsRoute;
-import 'package:btg_fund_manager/domain/entities/entities.dart' show NavItem;
+import 'package:btg_fund_manager/domain/core/entities.dart' show NavItem;
 import 'package:btg_fund_manager/presentation/core/providers.dart' show navigationIndexProvider;
 import 'package:btg_fund_manager/presentation/widgets/shared/bottom_nav_bar.dart';
 import 'package:btg_fund_manager/presentation/widgets/shared/sidebar_menu.dart';

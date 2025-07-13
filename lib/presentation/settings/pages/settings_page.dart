@@ -2,7 +2,7 @@ import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:btg_fund_manager/domain/entities/entities.dart' show NotificationType;
+import 'package:btg_fund_manager/domain/core/entities.dart' show NotificationType;
 import 'package:btg_fund_manager/presentation/core/providers.dart' show notificationMethodProvider;
 import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold;
 

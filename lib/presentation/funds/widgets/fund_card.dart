@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:btg_fund_manager/core/core.dart' show AppTextStyles, FundDetailRoute;
-import 'package:btg_fund_manager/domain/entities/entities.dart' show Fund;
+import 'package:btg_fund_manager/domain/core/entities.dart' show Fund;
 
 class FundCard extends StatelessWidget {
   final Fund fund;
