@@ -8,7 +8,12 @@ part of 'dependency_injector.dart';
 
 class _$Injector extends Injector {
   @override
-  void _registerDataSources() {}
+  void _registerDataSources() {
+    final KiwiContainer container = KiwiContainer();
+    container.registerSingleton<FundRemoteDataSource>(
+        (c) => FundRemoteDataSourceImpl());
+  }
+
   @override
   void _registerAdapters() {
     final KiwiContainer container = KiwiContainer();

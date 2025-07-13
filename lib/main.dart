@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-import 'package:btg_fund_manager/core/core.dart' show AppTheme, appRouter;
+import 'package:btg_fund_manager/core/core.dart' show AppTheme, appRouter, Injector;
 
 void main() {
   setUrlStrategy(PathUrlStrategy());
+  Injector.setup();
   runApp(const ProviderScope(child: MyApp()));
 }
 

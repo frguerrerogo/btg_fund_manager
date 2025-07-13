@@ -44,27 +44,37 @@ class SettingsPage extends ConsumerWidget {
                   ref.read(notificationMethodProvider.notifier).state = NotificationType.sms,
             ),
             const Spacer(),
-            SizedBox(
-              width: double.infinity,
-              height: 48,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: colorScheme.primary,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                ),
-                onPressed: () {
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(const SnackBar(content: Text('Notification preferences saved')));
-                },
-                child: Text(
-                  'Guardar',
-                  style: AppTextStyles.bodyMedium(context).copyWith(color: Colors.white),
-                ),
-              ),
-            ),
+            ButtonCustom(text: 'Guardar'),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ButtonCustom extends StatelessWidget {
+  const ButtonCustom({super.key, required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+        onPressed: () {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('Notification preferences saved')));
+        },
+        child: Text(text, style: AppTextStyles.bodyMedium(context).copyWith(color: Colors.white)),
       ),
     );
   }
