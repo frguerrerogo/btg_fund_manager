@@ -1,0 +1,18 @@
+import 'package:btg_fund_manager/data/core/adapters.dart' show FundAdapter;
+import 'package:btg_fund_manager/domain/core/entities.dart' show Fund;
+import 'package:btg_fund_manager/domain/core/repositories.dart' show FundRepository;
+
+import 'package:btg_fund_manager/data/funds/datasources/fund_remote_data_source.dart';
+
+class FundRepositoryImpl implements FundRepository {
+  final FundRemoteDataSource remoteDataSource;
+  final FundAdapter adapter;
+
+  FundRepositoryImpl({required this.remoteDataSource, required this.adapter});
+
+  @override
+  Future<List<Fund>> getFunds() async {
+    final models = await remoteDataSource.getFunds();
+    return models.map((m) => adapter.modelToEntity(m)).toList();
+  }
+}

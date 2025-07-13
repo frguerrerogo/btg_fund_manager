@@ -6,14 +6,14 @@ part 'fund_model.g.dart';
 class FundModel {
   final String id;
   final String name;
-  final int minAmount;
+  final double minimumAmount;
   final String currency;
   final String category;
 
   const FundModel({
     required this.id,
     required this.name,
-    required this.minAmount,
+    required this.minimumAmount,
     required this.currency,
     required this.category,
   });

@@ -9,7 +9,7 @@ part of 'fund_model.dart';
 FundModel _$FundModelFromJson(Map<String, dynamic> json) => FundModel(
   id: json['id'] as String,
   name: json['name'] as String,
-  minAmount: (json['minAmount'] as num).toInt(),
+  minimumAmount: (json['minimumAmount'] as num).toDouble(),
   currency: json['currency'] as String,
   category: json['category'] as String,
 );
@@ -17,7 +17,7 @@ FundModel _$FundModelFromJson(Map<String, dynamic> json) => FundModel(
 Map<String, dynamic> _$FundModelToJson(FundModel instance) => <String, dynamic>{
   'id': instance.id,
   'name': instance.name,
-  'minAmount': instance.minAmount,
+  'minimumAmount': instance.minimumAmount,
   'currency': instance.currency,
   'category': instance.category,
 };
