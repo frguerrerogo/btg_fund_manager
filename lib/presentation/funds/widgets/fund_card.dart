@@ -1,3 +1,4 @@
+import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
 import 'package:flutter/material.dart';
 import '../../../domain/entities/funds/fund.dart';
 
@@ -22,7 +23,7 @@ class FundCard extends StatelessWidget {
           ),
           child: const Icon(Icons.account_balance_wallet_outlined),
         ),
-        title: Text(fund.name, style: const TextStyle(fontWeight: FontWeight.w600)),
+        title: Text(fund.name, style: AppTextStyles.bodyMedium(context)),
         subtitle: Text(fund.category),
         trailing: const Icon(Icons.chevron_right),
         onTap: () {
