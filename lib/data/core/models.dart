@@ -1,1 +1,1 @@
-export '../models/funds/fund_model.dart';
+export '../funds/models/funds/fund_model.dart';
