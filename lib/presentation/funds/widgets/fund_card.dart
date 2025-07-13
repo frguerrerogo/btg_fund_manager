@@ -1,6 +1,7 @@
-import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
 import 'package:flutter/material.dart';
-import '../../../domain/entities/funds/fund.dart';
+
+import 'package:btg_fund_manager/core/core.dart' show AppTextStyles, FundDetailRoute;
+import 'package:btg_fund_manager/domain/entities/entities.dart' show Fund;
 
 class FundCard extends StatelessWidget {
   final Fund fund;
@@ -9,7 +10,10 @@ class FundCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Card(
+      color: colorScheme.primaryContainer,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 1,
       child: ListTile(
@@ -19,16 +23,14 @@ class FundCard extends StatelessWidget {
           height: 48,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Colors.brown[100],
+            color: colorScheme.onPrimary,
           ),
-          child: const Icon(Icons.account_balance_wallet_outlined),
+          child: Icon(Icons.account_balance_wallet_outlined, color: colorScheme.primary),
         ),
         title: Text(fund.name, style: AppTextStyles.bodyMedium(context)),
-        subtitle: Text(fund.category),
+        subtitle: Text(fund.category, style: AppTextStyles.bodySmall(context)),
         trailing: const Icon(Icons.chevron_right),
-        onTap: () {
-          // Navegar al detalle del fondo
-        },
+        onTap: () => FundDetailRoute(id: fund.id).go(context),
       ),
     );
   }

@@ -1,4 +1,5 @@
-import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
+import 'package:btg_fund_manager/core/core.dart'
+    show AppTextStyles, HomeRoute, TransactionsRoute, SettingsRoute;
 import 'package:btg_fund_manager/domain/entities/entities.dart' show NavItem;
 import 'package:btg_fund_manager/presentation/core/providers.dart' show navigationIndexProvider;
 import 'package:btg_fund_manager/presentation/widgets/shared/bottom_nav_bar.dart';
@@ -15,18 +16,25 @@ class AppScaffold extends ConsumerWidget {
   final String title;
   final bool showBackButton;
 
-  const AppScaffold({
-    super.key,
-    required this.body,
-    required this.title,
-    this.showBackButton = false,
-  });
+  AppScaffold({super.key, required this.body, required this.title, this.showBackButton = false});
 
   @override
-  final List<NavItem> _items = const [
-    NavItem(icon: Icons.home, label: 'Inicio', route: '/home'),
-    NavItem(icon: Icons.history, label: 'Transacciones', route: '/transactions'),
-    NavItem(icon: Icons.settings, label: 'Configuración', route: '/settings'),
+  final List<NavItem> _items = [
+    NavItem(
+      icon: Icons.home,
+      label: 'Inicio',
+      navigate: (context) => const HomeRoute().go(context),
+    ),
+    NavItem(
+      icon: Icons.history,
+      label: 'Transacciones',
+      navigate: (context) => const TransactionsRoute().go(context),
+    ),
+    NavItem(
+      icon: Icons.settings,
+      label: 'Configuración',
+      navigate: (context) => const SettingsRoute().go(context),
+    ),
   ];
 
   @override
@@ -39,7 +47,7 @@ class AppScaffold extends ConsumerWidget {
 
     void onSelect(int index) {
       indexNotifier.state = index;
-      context.go(_items[index].route);
+      _items[index].navigate(context);
     }
 
     return Scaffold(
