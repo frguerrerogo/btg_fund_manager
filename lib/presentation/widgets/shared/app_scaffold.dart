@@ -25,7 +25,7 @@ class AppScaffold extends ConsumerWidget {
   @override
   final List<NavItem> _items = const [
     NavItem(icon: Icons.home, label: 'Inicio', route: '/home'),
-    NavItem(icon: Icons.history, label: 'Historial', route: '/history'),
+    NavItem(icon: Icons.history, label: 'Transacciones', route: '/transactions'),
     NavItem(icon: Icons.settings, label: 'Configuración', route: '/settings'),
   ];
 
@@ -43,18 +43,17 @@ class AppScaffold extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: isMobile
-          ? AppBar(
-              centerTitle: true,
-              title: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Text(title, style: AppTextStyles.titleLarge(context)),
-              ),
-              leading: showBackButton ? const BackButton() : null,
-            )
-          : null,
       body: isMobile
-          ? Padding(padding: const EdgeInsets.only(top: 20.0), child: body)
+          ? Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Column(
+                children: [
+                  Text(title, style: AppTextStyles.titleLarge(context)),
+                  const SizedBox(height: 16),
+                  Expanded(child: body),
+                ],
+              ),
+            )
           : Row(
               children: [
                 SidebarMenu(
@@ -65,14 +64,19 @@ class AppScaffold extends ConsumerWidget {
                   onToggle: () => ref.read(isSidebarExpandedProvider.notifier).state = !isExpanded,
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: Column(
-                      children: [
-                        Text(title, style: AppTextStyles.titleLarge(context)),
-                        const SizedBox(height: 16),
-                        Expanded(child: body),
-                      ],
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(maxWidth: context.responsiveMaxWidth),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Column(
+                          children: [
+                            Text(title, style: AppTextStyles.titleLarge(context)),
+                            const SizedBox(height: 16),
+                            Expanded(child: body),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),

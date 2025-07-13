@@ -1,4 +1,4 @@
-enum TransactionType { subscription, cancellation }
+import 'package:btg_fund_manager/domain/entities/transactions/transaction_type.dart';
 
 class FundTransaction {
   final String fundId;

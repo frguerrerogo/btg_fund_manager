@@ -16,9 +16,9 @@ final GoRouter appRouter = GoRouter(
       pageBuilder: (context, state) => noTransitionPage(HomePage()),
     ),
     GoRoute(
-      path: '/history',
-      name: 'history',
-      pageBuilder: (context, state) => noTransitionPage(HistoryPage()),
+      path: '/transactions',
+      name: 'transactions',
+      pageBuilder: (context, state) => noTransitionPage(TransactionsPage()),
     ),
     GoRoute(
       path: '/settings',

@@ -2,7 +2,6 @@ import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffol
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:btg_fund_manager/core/extensions/responsive_context.dart';
 import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
 import 'package:btg_fund_manager/presentation/funds/providers/fund_provider.dart'
     show fundListProvider;
@@ -17,32 +16,27 @@ class HomePage extends ConsumerWidget {
 
     return AppScaffold(
       title: 'Fondos BTG',
-      body: Center(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: context.responsiveMaxWidth),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: fundsAsync.when(
-              data: (funds) => Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Fondos disponibles', style: AppTextStyles.titleMedium(context)),
-                  const SizedBox(height: 16),
-                  Expanded(
-                    child: ListView.separated(
-                      itemCount: funds.length,
-                      separatorBuilder: (_, __) => const SizedBox(height: 12),
-                      itemBuilder: (context, index) {
-                        return FundCard(fund: funds[index]);
-                      },
-                    ),
-                  ),
-                ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: fundsAsync.when(
+          data: (funds) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Fondos disponibles', style: AppTextStyles.titleMedium(context)),
+              const SizedBox(height: 16),
+              Expanded(
+                child: ListView.separated(
+                  itemCount: funds.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 12),
+                  itemBuilder: (context, index) {
+                    return FundCard(fund: funds[index]);
+                  },
+                ),
               ),
-              loading: () => const Center(child: CircularProgressIndicator()),
-              error: (e, _) => Center(child: Text('Error loading funds: $e')),
-            ),
+            ],
           ),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (e, _) => Center(child: Text('Error loading funds: $e')),
         ),
       ),
     );
