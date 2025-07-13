@@ -1,2 +1,2 @@
 // Funds
-export '../funds/views/home_view.dart';
+export '../funds/pages/home_page.dart';

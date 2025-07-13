@@ -8,8 +8,8 @@ import 'package:btg_fund_manager/presentation/funds/providers/fund_provider.dart
     show fundListProvider;
 import 'package:btg_fund_manager/presentation/funds/widgets/fund_card.dart';
 
-class HomeView extends ConsumerWidget {
-  const HomeView({super.key});
+class HomePage extends ConsumerWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
