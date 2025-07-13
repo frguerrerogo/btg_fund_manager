@@ -1,5 +1,5 @@
-import 'package:btg_fund_manager/data/core/adapters.dart' show Adapter;
-import 'package:btg_fund_manager/data/core/models.dart' show FundModel;
+import 'package:btg_fund_manager/data/core/adapters/adapters.dart' show Adapter;
+import 'package:btg_fund_manager/data/core/models/models.dart' show FundModel;
 import 'package:btg_fund_manager/domain/core/entities.dart' show Fund;
 
 class FundAdapter extends Adapter<Fund, FundModel> {

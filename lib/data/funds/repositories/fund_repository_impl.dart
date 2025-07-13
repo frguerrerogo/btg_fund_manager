@@ -1,8 +1,8 @@
-import 'package:btg_fund_manager/data/core/adapters.dart' show FundAdapter;
+import 'package:btg_fund_manager/data/core/adapters/adapters.dart' show FundAdapter;
+import 'package:btg_fund_manager/data/core/datasources/remote/remote.dart'
+    show FundRemoteDataSource;
 import 'package:btg_fund_manager/domain/core/entities.dart' show Fund;
 import 'package:btg_fund_manager/domain/core/repositories.dart' show FundRepository;
-
-import 'package:btg_fund_manager/data/funds/datasources/fund_remote_data_source.dart';
 
 class FundRepositoryImpl implements FundRepository {
   final FundRemoteDataSource remoteDataSource;

@@ -7,20 +7,24 @@ part of 'app_routes.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-  $homeRoute,
-  $fundDetailRoute,
-  $transactionsRoute,
-  $settingsRoute,
-];
+      $homeRoute,
+      $fundDetailRoute,
+      $transactionsRoute,
+      $settingsRoute,
+    ];
 
-RouteBase get $homeRoute =>
-    GoRouteData.$route(path: '/home', factory: _$HomeRoute._fromState);
+RouteBase get $homeRoute => GoRouteData.$route(
+      path: '/home',
+      factory: _$HomeRoute._fromState,
+    );
 
 mixin _$HomeRoute on GoRouteData {
   static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
   @override
-  String get location => GoRouteData.$location('/home');
+  String get location => GoRouteData.$location(
+        '/home',
+      );
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -37,20 +41,21 @@ mixin _$HomeRoute on GoRouteData {
 }
 
 RouteBase get $fundDetailRoute => GoRouteData.$route(
-  path: '/fund-detail/:id',
-
-  factory: _$FundDetailRoute._fromState,
-);
+      path: '/fund-detail/:id',
+      factory: _$FundDetailRoute._fromState,
+    );
 
 mixin _$FundDetailRoute on GoRouteData {
-  static FundDetailRoute _fromState(GoRouterState state) =>
-      FundDetailRoute(id: state.pathParameters['id']!);
+  static FundDetailRoute _fromState(GoRouterState state) => FundDetailRoute(
+        id: state.pathParameters['id']!,
+      );
 
   FundDetailRoute get _self => this as FundDetailRoute;
 
   @override
-  String get location =>
-      GoRouteData.$location('/fund-detail/${Uri.encodeComponent(_self.id)}');
+  String get location => GoRouteData.$location(
+        '/fund-detail/${Uri.encodeComponent(_self.id)}',
+      );
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -67,17 +72,18 @@ mixin _$FundDetailRoute on GoRouteData {
 }
 
 RouteBase get $transactionsRoute => GoRouteData.$route(
-  path: '/transactions',
-
-  factory: _$TransactionsRoute._fromState,
-);
+      path: '/transactions',
+      factory: _$TransactionsRoute._fromState,
+    );
 
 mixin _$TransactionsRoute on GoRouteData {
   static TransactionsRoute _fromState(GoRouterState state) =>
       const TransactionsRoute();
 
   @override
-  String get location => GoRouteData.$location('/transactions');
+  String get location => GoRouteData.$location(
+        '/transactions',
+      );
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -93,14 +99,18 @@ mixin _$TransactionsRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $settingsRoute =>
-    GoRouteData.$route(path: '/settings', factory: _$SettingsRoute._fromState);
+RouteBase get $settingsRoute => GoRouteData.$route(
+      path: '/settings',
+      factory: _$SettingsRoute._fromState,
+    );
 
 mixin _$SettingsRoute on GoRouteData {
   static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
 
   @override
-  String get location => GoRouteData.$location('/settings');
+  String get location => GoRouteData.$location(
+        '/settings',
+      );
 
   @override
   void go(BuildContext context) => context.go(location);
