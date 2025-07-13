@@ -19,7 +19,7 @@ class FundDetailPage extends StatelessWidget {
             // ClipRRect(
             //   borderRadius: BorderRadius.circular(12),
             //   child: Image.network(
-            //     'https://images.unsplash.com/photo-1581091215367-59d2957c1d2b', // reemplaza con tu imagen o placeholder
+            //     'https://images.unsplash.com/photo-1581091215367-59d2957c1d2b',
             //     height: 180,
             //     width: double.infinity,
             //     fit: BoxFit.cover,
@@ -34,13 +34,13 @@ class FundDetailPage extends StatelessWidget {
             // const SizedBox(height: 8),
             // Text(overview, style: Theme.of(context).textTheme.bodyMedium),
             const SizedBox(height: 24),
-            Text('Subscription', style: Theme.of(context).textTheme.titleMedium),
+            Text('Suscripción', style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 8),
             TextField(
               controller: controller,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                hintText: 'Enter amount',
+                hintText: 'Ingrese el monto',
                 filled: true,
                 fillColor: Color(0xFFF3F4F6),
                 border: OutlineInputBorder(borderSide: BorderSide.none),
@@ -65,7 +65,7 @@ class FundDetailPage extends StatelessWidget {
                   backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
-                child: const Text('Subscribe'),
+                child: const Text('Suscribir'),
               ),
             ),
             const SizedBox(height: 12),
@@ -78,7 +78,7 @@ class FundDetailPage extends StatelessWidget {
                   side: const BorderSide(color: Color(0xFFE5E7EB)),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
-                child: const Text('Cancel Participation'),
+                child: const Text('Cancelar participación'),
               ),
             ),
           ],
