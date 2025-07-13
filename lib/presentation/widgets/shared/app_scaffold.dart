@@ -1,11 +1,16 @@
 import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
 import 'package:btg_fund_manager/domain/entities/entities.dart' show NavItem;
+import 'package:btg_fund_manager/presentation/core/providers.dart' show navigationIndexProvider;
 import 'package:btg_fund_manager/presentation/widgets/shared/bottom_nav_bar.dart';
 import 'package:btg_fund_manager/presentation/widgets/shared/sidebar_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:btg_fund_manager/core/extensions/responsive_context.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class AppScaffold extends StatefulWidget {
+import '../../core/providers/navigation_provider.dart' show isSidebarExpandedProvider;
+
+class AppScaffold extends ConsumerWidget {
   final Widget body;
   final String title;
   final bool showBackButton;
@@ -18,25 +23,24 @@ class AppScaffold extends StatefulWidget {
   });
 
   @override
-  State<AppScaffold> createState() => _AppScaffoldState();
-}
-
-class _AppScaffoldState extends State<AppScaffold> {
-  int _selectedIndex = 0;
-
   final List<NavItem> _items = const [
-    NavItem(icon: Icons.home, label: 'Inicio'),
-    NavItem(icon: Icons.history, label: 'Historial'),
-    NavItem(icon: Icons.settings, label: 'Configuración'),
+    NavItem(icon: Icons.home, label: 'Inicio', route: '/home'),
+    NavItem(icon: Icons.history, label: 'Historial', route: '/history'),
+    NavItem(icon: Icons.settings, label: 'Configuración', route: '/settings'),
   ];
 
-  void _onSelect(int index) {
-    setState(() => _selectedIndex = index);
-  }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isMobile = context.isMobile;
+
+    final selectedIndex = ref.watch(navigationIndexProvider);
+    final isExpanded = ref.watch(isSidebarExpandedProvider);
+    final indexNotifier = ref.read(navigationIndexProvider.notifier);
+
+    void onSelect(int index) {
+      indexNotifier.state = index;
+      context.go(_items[index].route);
+    }
 
     return Scaffold(
       appBar: isMobile
@@ -44,29 +48,30 @@ class _AppScaffoldState extends State<AppScaffold> {
               centerTitle: true,
               title: Padding(
                 padding: const EdgeInsets.only(top: 20.0),
-                child: Text(widget.title, style: AppTextStyles.titleLarge(context)),
+                child: Text(title, style: AppTextStyles.titleLarge(context)),
               ),
-              leading: widget.showBackButton ? const BackButton() : null,
+              leading: showBackButton ? const BackButton() : null,
             )
           : null,
       body: isMobile
-          ? Padding(padding: const EdgeInsets.only(top: 20.0), child: widget.body)
+          ? Padding(padding: const EdgeInsets.only(top: 20.0), child: body)
           : Row(
               children: [
                 SidebarMenu(
-                  selectedIndex: _selectedIndex,
-                  onToggle: () {},
-                  onSelect: (index) => setState(() => _selectedIndex = index),
+                  selectedIndex: selectedIndex,
+                  isExpanded: isExpanded,
+                  onSelect: onSelect,
                   items: _items,
+                  onToggle: () => ref.read(isSidebarExpandedProvider.notifier).state = !isExpanded,
                 ),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: Column(
                       children: [
-                        Text(widget.title, style: AppTextStyles.titleLarge(context)),
+                        Text(title, style: AppTextStyles.titleLarge(context)),
                         const SizedBox(height: 16),
-                        Expanded(child: widget.body),
+                        Expanded(child: body),
                       ],
                     ),
                   ),
@@ -74,7 +79,7 @@ class _AppScaffoldState extends State<AppScaffold> {
               ],
             ),
       bottomNavigationBar: isMobile
-          ? CustomBottomNavBar(selectedIndex: _selectedIndex, onSelect: _onSelect, items: _items)
+          ? CustomBottomNavBar(selectedIndex: selectedIndex, onSelect: onSelect, items: _items)
           : null,
     );
   }

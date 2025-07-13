@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 
 class SidebarMenu extends StatefulWidget {
   final int selectedIndex;
+  final bool isExpanded;
   final ValueChanged<int> onSelect;
-  final VoidCallback onToggle;
   final List<NavItem> items;
+  final VoidCallback onToggle;
 
   const SidebarMenu({
     super.key,
     required this.selectedIndex,
     required this.onSelect,
-    required this.onToggle,
     required this.items,
+    required this.isExpanded,
+    required this.onToggle,
   });
 
   @override
@@ -23,6 +25,13 @@ class SidebarMenu extends StatefulWidget {
 class _SidebarMenuState extends State<SidebarMenu> {
   bool _isExpanded = false;
   bool _showLabels = false;
+  @override
+  void initState() {
+    super.initState();
+    _isExpanded = widget.isExpanded;
+    _showLabels = widget.isExpanded;
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -79,8 +88,8 @@ class _SidebarMenuState extends State<SidebarMenu> {
               Future.delayed(const Duration(milliseconds: 400), () {
                 setState(() => _showLabels = !_showLabels);
               });
+              widget.onToggle();
             });
-            widget.onToggle();
           },
           child: Stack(
             alignment: Alignment.center,
