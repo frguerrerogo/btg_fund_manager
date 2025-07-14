@@ -3,8 +3,8 @@
     {
       "id": "27cb",
       "name": "Fabian Guerrero",
-      "balance": 400000,
-      "type_notification": "sms",
+      "balance": 500000,
+      "type_notification": "email",
       "participations": []
     }
   ],
@@ -46,6 +46,61 @@
     }
   ],
   "transactions": [
-
+    {
+      "id": "2eb6",
+      "fundId": 1,
+      "amount": 120000,
+      "date": "2025-07-14T14:52:06.838",
+      "type": "subscription"
+    },
+    {
+      "id": "b76f",
+      "fundId": 1,
+      "amount": 150000,
+      "date": "2025-07-14T14:52:39.473",
+      "type": "subscription"
+    },
+    {
+      "id": "293d",
+      "fundId": 1,
+      "amount": 250000,
+      "date": "2025-07-14T14:52:52.784",
+      "type": "subscription"
+    },
+    {
+      "id": "d832",
+      "fundId": 3,
+      "amount": 255000,
+      "date": "2025-07-14T15:02:02.664",
+      "type": "subscription"
+    },
+    {
+      "id": "dd8a",
+      "fundId": 3,
+      "amount": 0,
+      "date": "2025-07-14T15:04:13.420",
+      "type": "cancellation"
+    },
+    {
+      "id": "3ed4",
+      "fundId": 1,
+      "amount": 0,
+      "date": "2025-07-14T15:04:21.344",
+      "type": "cancellation"
+    },
+    {
+      "id": "593c",
+      "fundId": 1,
+      "amount": 150000,
+      "date": "2025-07-14T15:29:31.878",
+      "type": "subscription"
+    },
+    {
+      "id": "93a4",
+      "fundId": 1,
+      "amount": 150000,
+      "date": "2025-07-14T15:29:37.372",
+      "type": "cancellation"
+    }
   ]
 }

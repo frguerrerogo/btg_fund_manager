@@ -50,20 +50,13 @@ class HomePage extends ConsumerWidget {
                           ).copyWith(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 4),
-                        Text(
-                          profile.balance.toString(),
-                          style: AppTextStyles.bodySmall(
-                            context,
-                          ).copyWith(color: Colors.grey.shade600),
-                        ),
+                        Text(profile.balance.toString(), style: AppTextStyles.titleMedium(context)),
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
-
                 Text('Fondos disponibles', style: AppTextStyles.titleMedium(context)),
-
                 const SizedBox(height: 16),
                 Expanded(
                   child: ListView.separated(

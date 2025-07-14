@@ -78,6 +78,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   onPressed: () {
                     final selected = ref.read(notificationMethodProvider);
                     ref.read(userProfileProvider.notifier).updateNotification(selected);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Tipo de notificación guardado'),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
                   },
                 ),
               ],

@@ -38,7 +38,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 400),
-      width: _isExpanded ? 200 : 70,
+      width: _isExpanded ? 210 : 70,
       color: colorScheme.primaryContainer,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +65,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
       title: (_isExpanded && _showLabels)
           ? Text(
               item.label,
-              style: AppTextStyles.bodySmall(context).copyWith(
+              style: AppTextStyles.bodyMedium(context).copyWith(
                 color: selected ? colorScheme.primary : Colors.black,
                 fontWeight: selected ? FontWeight.bold : FontWeight.normal,
               ),
