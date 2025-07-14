@@ -18,7 +18,7 @@ class HomeRoute extends GoRouteData with _$HomeRoute {
 /// FUND DETAIL
 @TypedGoRoute<FundDetailRoute>(path: '/fund-detail/:id')
 class FundDetailRoute extends GoRouteData with _$FundDetailRoute {
-  final String id;
+  final int id;
 
   const FundDetailRoute({required this.id});
 

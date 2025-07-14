@@ -4,7 +4,7 @@ part 'fund_model.g.dart';
 
 @JsonSerializable()
 class FundModel {
-  final String id;
+  final int id;
   final String name;
   final double minimumAmount;
   final String currency;

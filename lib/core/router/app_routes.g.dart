@@ -47,14 +47,14 @@ RouteBase get $fundDetailRoute => GoRouteData.$route(
 
 mixin _$FundDetailRoute on GoRouteData {
   static FundDetailRoute _fromState(GoRouterState state) => FundDetailRoute(
-        id: state.pathParameters['id']!,
+        id: int.parse(state.pathParameters['id']!)!,
       );
 
   FundDetailRoute get _self => this as FundDetailRoute;
 
   @override
   String get location => GoRouteData.$location(
-        '/fund-detail/${Uri.encodeComponent(_self.id)}',
+        '/fund-detail/${Uri.encodeComponent(_self.id.toString())}',
       );
 
   @override

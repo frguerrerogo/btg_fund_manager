@@ -14,7 +14,6 @@ class SettingsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedMethod = ref.watch(notificationMethodProvider);
-    final colorScheme = Theme.of(context).colorScheme;
 
     return AppScaffold(
       title: 'Configuración',

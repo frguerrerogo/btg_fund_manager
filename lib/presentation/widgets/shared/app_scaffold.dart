@@ -7,7 +7,6 @@ import 'package:btg_fund_manager/presentation/widgets/shared/sidebar_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:btg_fund_manager/core/extensions/responsive_context.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../core/providers/navigation_provider.dart' show isSidebarExpandedProvider;
 
@@ -18,8 +17,7 @@ class AppScaffold extends ConsumerWidget {
 
   AppScaffold({super.key, required this.body, required this.title, this.showBackButton = false});
 
-  @override
-  final List<NavItem> _items = [
+  final List<NavItem> items = [
     NavItem(
       icon: Icons.home,
       label: 'Inicio',
@@ -47,7 +45,7 @@ class AppScaffold extends ConsumerWidget {
 
     void onSelect(int index) {
       indexNotifier.state = index;
-      _items[index].navigate(context);
+      items[index].navigate(context);
     }
 
     return Scaffold(
@@ -68,7 +66,7 @@ class AppScaffold extends ConsumerWidget {
                   selectedIndex: selectedIndex,
                   isExpanded: isExpanded,
                   onSelect: onSelect,
-                  items: _items,
+                  items: items,
                   onToggle: () => ref.read(isSidebarExpandedProvider.notifier).state = !isExpanded,
                 ),
                 Expanded(
@@ -91,7 +89,7 @@ class AppScaffold extends ConsumerWidget {
               ],
             ),
       bottomNavigationBar: isMobile
-          ? CustomBottomNavBar(selectedIndex: selectedIndex, onSelect: onSelect, items: _items)
+          ? CustomBottomNavBar(selectedIndex: selectedIndex, onSelect: onSelect, items: items)
           : null,
     );
   }

@@ -1,35 +1,35 @@
 {
   "funds": [
     {
-      "id": "1",
+      "id": 1,
       "name": "FPV_BTG_PACTUAL_RECAUDADORA",
       "minimumAmount": 75000,
       "currency": "COP",
       "category": "FPV"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "FPV_BTG_PACTUAL_ECOPETROL",
       "minimumAmount": 125000,
       "currency": "COP",
       "category": "FPV"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "DEUDAPRIVADA",
       "minimumAmount": 50000,
       "currency": "COP",
       "category": "FIC"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "FDO-ACCIONES",
       "minimumAmount": 250000,
       "currency": "COP",
       "category": "FIC"
     },
     {
-      "id": "5",
+      "id":5,
       "name": "FPV_BTG_PACTUAL_DINAMICA",
       "minimumAmount": 100000,
       "currency": "COP",

@@ -15,4 +15,10 @@ class FundRepositoryImpl implements FundRepository {
     final models = await remoteDataSource.getFunds();
     return models.map((m) => adapter.modelToEntity(m)).toList();
   }
+
+  @override
+  Future<Fund> getFundById({required int id}) async {
+    final model = await remoteDataSource.getFundById(id: id);
+    return adapter.modelToEntity(model);
+  }
 }
