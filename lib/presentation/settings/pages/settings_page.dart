@@ -73,18 +73,21 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   },
                 ),
                 const SizedBox(height: 12),
-                ButtonCustom(
-                  text: 'Guardar',
-                  onPressed: () {
-                    final selected = ref.read(notificationMethodProvider);
-                    ref.read(userProfileProvider.notifier).updateNotification(selected);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Tipo de notificación guardado'),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                  },
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: ButtonCustom(
+                    text: 'Guardar',
+                    onPressed: () {
+                      final selected = ref.read(notificationMethodProvider);
+                      ref.read(userProfileProvider.notifier).updateNotification(selected);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Tipo de notificación guardado'),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ],
             );

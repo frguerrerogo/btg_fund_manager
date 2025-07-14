@@ -174,40 +174,46 @@ class _FundDetailPageState extends ConsumerState<FundDetailPage> {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  ButtonCustom(
-                    text: 'Suscribir',
-                    onPressed: () {
-                      final amount = int.tryParse(controller.text.trim());
-                      if (amount == null) {
-                        _showMessage(context, 'Ingrese un monto válido', isError: true);
-                        return;
-                      }
-                      _handleTransaction(
-                        context: context,
-                        fund: fund,
-                        amount: amount,
-                        balance: balance,
-                        type: TransactionType.subscription,
-                        participations: profile.participations,
-                      );
-                    },
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: ButtonCustom(
+                      text: 'Suscribir',
+                      onPressed: () {
+                        final amount = int.tryParse(controller.text.trim());
+                        if (amount == null) {
+                          _showMessage(context, 'Ingrese un monto válido', isError: true);
+                          return;
+                        }
+                        _handleTransaction(
+                          context: context,
+                          fund: fund,
+                          amount: amount,
+                          balance: balance,
+                          type: TransactionType.subscription,
+                          participations: profile.participations,
+                        );
+                      },
+                    ),
                   ),
                   const SizedBox(height: 15),
-                  ButtonCustom(
-                    enable: profile.participations.any((p) => p.fundId == fund.id),
-                    text: 'Cancelar participación',
-                    onPressed: () {
-                      final amount = int.tryParse(controller.text.trim()) ?? 0;
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: ButtonCustom(
+                      enable: profile.participations.any((p) => p.fundId == fund.id),
+                      text: 'Cancelar participación',
+                      onPressed: () {
+                        final amount = int.tryParse(controller.text.trim()) ?? 0;
 
-                      _handleTransaction(
-                        context: context,
-                        fund: fund,
-                        amount: amount,
-                        balance: balance,
-                        type: TransactionType.cancellation,
-                        participations: profile.participations,
-                      );
-                    },
+                        _handleTransaction(
+                          context: context,
+                          fund: fund,
+                          amount: amount,
+                          balance: balance,
+                          type: TransactionType.cancellation,
+                          participations: profile.participations,
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 extension ResponsiveContext on BuildContext {
   static const double _mobileBreakpoint = 600;
-  static const double _tabletBreakpoint = 800;
+  //static const double _tabletBreakpoint = 800;
   static const double _desktopBreakpoint = 1200;
 
   double get screenWidth => MediaQuery.of(this).size.width;

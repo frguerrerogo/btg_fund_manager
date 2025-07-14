@@ -1,3 +1,4 @@
+import 'package:btg_fund_manager/core/extensions/responsive_context.dart';
 import 'package:flutter/material.dart';
 
 class ButtonCustom extends StatelessWidget {
@@ -19,8 +20,10 @@ class ButtonCustom extends StatelessWidget {
         ? BorderSide.none
         : const BorderSide(color: Color(0xFFE5E7EB));
 
+    final isDesktop = context.isDesktop;
+
     return SizedBox(
-      width: double.infinity,
+      width: isDesktop ? 300 : double.infinity,
       height: 50,
       child: ElevatedButton(
         onPressed: enable ? onPressed : null,
