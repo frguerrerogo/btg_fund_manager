@@ -1,16 +1,42 @@
-# btg_fund_manager
+# BTG Fund Manager - Prueba Técnica Flutter
 
-A new Flutter project.
+**BTG Fund Manager** es una aplicación móvil desarrollada en Flutter como parte de una prueba técnica. Su objetivo es simular la gestión de fondos de inversión para usuarios de BTG, permitiéndoles consultar fondos disponibles, suscribirse o cancelar su participación, y visualizar su historial de transacciones de forma clara, ágil y efectiva.
 
-## Getting Started
+La aplicación está diseñada para ofrecer una experiencia de usuario fluida, con una interfaz intuitiva, diseño responsivo y validaciones en tiempo real. Entre sus funcionalidades principales se incluyen la validación de montos mínimos, actualización automática del saldo, notificaciones configurables (por SMS o email), y manejo adecuado de errores y estados de carga.
 
-This project is a starting point for a Flutter application.
+Para simular el backend, se utiliza [`json-server`](https://github.com/typicode/json-server) con datos locales en formato JSON, lo que permite realizar peticiones HTTP como si se tratara de una API REST real.
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Características principales
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Visualización de la lista de fondos disponibles.
+- Suscripción y cancelación de participación en fondos.
+- Validación de saldo y montos mínimos requeridos.
+- Actualización del saldo disponible.
+- Historial de transacciones detallado.
+- Selección de método de notificación: email o SMS.
+- Feedback visual, manejo de errores y loading states.
+- UI responsiva y experiencia de usuario optimizada.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🔥 Tecnologías Usadas
+
+- **Flutter**: Framework principal.
+- **Riverpod**: Gestión de estado.
+- **Kiwi**: Inyección de dependencias.
+- **GoRoute**: Navegación.
+- **HTTP**: Cliente HTTP para APIs.
+- **json-server**: API REST simulada.
+- **Json Annotation**: Serialización/deserialización de JSON.
+- **Intl**: Internacionalización y formatos.
+- **Flutter Test**: Pruebas unitarias y de integración.
+- **Arquitectura modular**: Separación del proyecto en paquetes independientes (features, core, shared).
+- **Arquitectura limpia (Clean Architecture)**: separación de capas: presentación, dominio y datos.
+- **Flutter Test**: Pruebas unitarias y de integración.
+
+## 👤 Autor y Contacto
+
+**Desarrollador**: Fabian Guerrero
+
+Para preguntas o soporte, puedes contactarme en:
+
+- **Email**: [frguerrerogo@gmail.com](frguerrerogo@gmail.com)
+- **LinkedIn**: [frguerrerogo](https://www.linkedin.com/in/frguerrerogo/)
