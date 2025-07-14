@@ -1,4 +1,16 @@
 {
+  "user_pofile": {
+    "id": 1,
+    "name": "Fabian Guerrero",
+    "balance": 500000,
+    "type_notification": "email",
+  "participations": [
+    {
+    "fundId": 2, "fundName": "BTG_ECOPETROL", "amount": 100000
+    },{
+    "fundId": 3, "fundName": "BTG_ECOPETROL", "amount": 100000
+    }
+  ]},
   "funds": [
     {
       "id": 1,
@@ -85,6 +97,13 @@
       "amount": 450000,
       "date": "2025-07-14T07:13:51.717",
       "type": "cancellation"
+    },
+    {
+      "id": "2dbc",
+      "fundId": 3,
+      "amount": 75000,
+      "date": "2025-07-14T08:49:50.791",
+      "type": "subscription"
     }
   ]
 }

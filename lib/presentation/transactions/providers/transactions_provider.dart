@@ -5,5 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final fundTransactionProvider = FutureProvider.autoDispose<List<FundTransaction>>((ref) async {
   final repository = ref.watch(transactionsRepositoryProvider);
-  return await repository.getTransactions();
+  final data = await repository.getTransactions();
+  data.sort((a, b) => b.date.compareTo(a.date));
+  return data;
 });

@@ -1,3 +1,4 @@
+import 'package:btg_fund_manager/domain/core/entities.dart' show TransactionType;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -39,7 +40,7 @@ class TransactionsPage extends ConsumerWidget {
                         separatorBuilder: (_, __) => const SizedBox(height: 10),
                         itemBuilder: (context, index) {
                           final tx = transactions[index];
-                          final isSub = tx.type.name == 'subscription';
+                          final isSub = tx.type == TransactionType.subscription;
                           final fundName = fundMap[tx.fundId] ?? 'Fondo desconocido';
 
                           return ListTile(
@@ -47,7 +48,7 @@ class TransactionsPage extends ConsumerWidget {
                               width: 40,
                               height: 40,
                               decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.surfaceVariant,
+                                color: Theme.of(context).colorScheme.surfaceContainer,
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Icon(
@@ -62,14 +63,14 @@ class TransactionsPage extends ConsumerWidget {
                               ).copyWith(fontWeight: FontWeight.bold),
                             ),
                             subtitle: Text(
-                              isSub ? 'Subscription' : 'Cancellation',
+                              isSub ? 'Suscripción' : 'Cancelación',
                               style: AppTextStyles.bodySmall(context),
                             ),
                             trailing: Text(
-                              '${tx.amount > 0 ? '+' : ''}\$${tx.amount.abs().toStringAsFixed(0)}',
+                              '${isSub ? '+' : '-'}\$${tx.amount.abs().toStringAsFixed(0)}',
                               style: AppTextStyles.bodySmall(context).copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: tx.amount > 0 ? Colors.green : Colors.red,
+                                color: isSub ? Colors.green : Colors.red,
                               ),
                             ),
                           );
