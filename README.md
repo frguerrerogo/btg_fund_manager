@@ -6,6 +6,12 @@ La aplicación está diseñada para ofrecer una experiencia de usuario fluida, c
 
 Para simular el backend, se utiliza [`json-server`](https://github.com/typicode/json-server) con datos locales en formato JSON, lo que permite realizar peticiones HTTP como si se tratara de una API REST real.
 
+## 🎥 Demo en video
+
+Puedes ver una demostración completa de la aplicación haciendo clic en el siguiente enlace:
+
+👉 [Ver demo de BTG Fund Manager](https://drive.google.com/file/d/14J-KEDOv9JbEfocmtkOEufZDsPBUh7qx/view?usp=drive_link)
+
 ## 🚀 Características principales
 
 - Visualización de la lista de fondos disponibles.
@@ -36,8 +42,8 @@ Para simular el backend, se utiliza [`json-server`](https://github.com/typicode/
 
 ### Requisitos previos
 
-- **Flutter 3.29.0**
-- **Dart 3.7.0**
+- **Flutter 3.32.0**
+- **Dart 3.8.0**
 - Dependencias instaladas con `flutter pub get`.
 
 ### Instalación
