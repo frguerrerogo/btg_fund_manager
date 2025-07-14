@@ -6,7 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold, ButtonCustom;
 import 'package:btg_fund_manager/presentation/core/providers.dart'
-    show fundByIdProvider, registerFundTransactionProvider;
+    show
+        fundByIdProvider,
+        registerFundTransactionProvider,
+        userProfileProvider,
+        userBalanceProvider;
 
 class FundDetailPage extends ConsumerWidget {
   final int fundId;
@@ -85,6 +89,12 @@ class FundDetailPage extends ConsumerWidget {
                   text: 'Suscribir',
                   onPressed: () async {
                     final amount = int.tryParse(controller.text.trim());
+                    final balance = ref.watch(userBalanceProvider);
+
+                    if (amount == null || amount > balance) {
+                      showError('Saldo insuficiente');
+                      return;
+                    }
 
                     if (amount == null || amount < fund.minimumAmount) {
                       showError('Monto inválido');
@@ -97,7 +107,7 @@ class FundDetailPage extends ConsumerWidget {
                         amount: amount,
                         type: TransactionType.subscription,
                       );
-
+                      ref.read(userProfileProvider.notifier).updateBalance(balance - amount);
                       showSuccess('Suscripción realizada');
                     } catch (e) {
                       showError(e.toString());
@@ -121,6 +131,7 @@ class FundDetailPage extends ConsumerWidget {
                         amount: amount,
                         type: TransactionType.cancellation,
                       );
+                      ref.read(userProfileProvider.notifier).updateBalance(600000);
                       showSuccess('Suscripción cancelada');
                     } catch (e) {
                       showError(e.toString());

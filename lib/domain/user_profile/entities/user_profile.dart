@@ -2,7 +2,7 @@ import 'package:btg_fund_manager/domain/core/entities.dart'
     show NotificationType, FundParticipation;
 
 class UserProfile {
-  final int id;
+  final String id;
   final String name;
   final int balance;
   final NotificationType typeNotification;

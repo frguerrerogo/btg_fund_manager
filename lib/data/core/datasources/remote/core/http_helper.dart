@@ -56,4 +56,26 @@ class HttpHelper {
       throw Exception("Error inesperado: ${e.toString()}");
     }
   }
+
+  static Future<dynamic> patchJsonRequest(Uri uri, Map<String, dynamic> body) async {
+    try {
+      final response = await http.patch(
+        uri,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(body),
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 204) {
+        return json.decode(response.body);
+      } else {
+        throw Exception(RemoteUtils.handleError(response.statusCode));
+      }
+    } on ClientException catch (e) {
+      throw Exception("Fallo de conexión con el servidor: ${e.message}");
+    } on FormatException catch (e) {
+      throw Exception("Error de formato en la respuesta: ${e.message}");
+    } catch (e) {
+      throw Exception("Error inesperado: ${e.toString()}");
+    }
+  }
 }

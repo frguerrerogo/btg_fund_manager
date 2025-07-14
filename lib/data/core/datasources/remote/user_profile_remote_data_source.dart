@@ -17,34 +17,28 @@ class UserProfileRemoteDataSourceImpl implements UserProfileRemoteDataSource {
 
   @override
   Future<UserProfileModel> getProfile() async {
-    final uri = Uri.parse('$_baseUrl/user_pofile');
+    final uri = Uri.parse('$_baseUrl/user_profile');
     final jsonResponse = await HttpHelper.getJsonRequest(uri);
 
-    final Map<String, dynamic> data = RemoteUtils.validateMapResponse(jsonResponse);
+    final Map<String, dynamic> data = RemoteUtils.validateListResponse(jsonResponse)[0];
     return UserProfileModel.fromJson(data);
   }
 
   @override
-  Future<void> updateBalance(int newBalance) {
-    // TODO: implement updateBalance
-    throw UnimplementedError();
+  Future<void> updateBalance(int newBalance) async {
+    final uri = Uri.parse('$_baseUrl/user_profile/27cb');
+    await HttpHelper.patchJsonRequest(uri, {'balance': newBalance});
   }
 
   @override
-  Future<void> updateNotificationType(typeNotification) {
-    // TODO: implement updateNotificationType
-    throw UnimplementedError();
+  Future<void> updateNotificationType(typeNotification) async {
+    final uri = Uri.parse('$_baseUrl/user_profile/27cb');
+    await HttpHelper.patchJsonRequest(uri, {'type_notification': typeNotification});
   }
 
   @override
-  Future<void> updateParticipation(List<dynamic> participations) {
-    // TODO: implement updateParticipation
-    throw UnimplementedError();
+  Future<void> updateParticipation(List<dynamic> participations) async {
+    final uri = Uri.parse('$_baseUrl/user_profile/27cb');
+    await HttpHelper.patchJsonRequest(uri, {'participations': participations});
   }
-
-  // @override
-  // Future<void> postSubscriptionToFund(FundTransactionModel data) async {
-  //   final uri = Uri.parse('$_baseUrl/transactions');
-  //   await HttpHelper.postJsonRequest(uri, data.toJson());
-  // }
 }

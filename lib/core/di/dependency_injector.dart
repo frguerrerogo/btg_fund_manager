@@ -30,6 +30,7 @@ abstract class Injector {
   @Register.singleton(FundAdapter)
   @Register.singleton(FundTransactionAdapter)
   @Register.singleton(UserProfileAdapter)
+  @Register.singleton(FundParticipationAdapter)
   void _registerAdapters();
 
   // Repositories

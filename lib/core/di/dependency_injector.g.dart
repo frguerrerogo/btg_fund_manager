@@ -26,7 +26,8 @@ class _$Injector extends Injector {
       ..registerSingleton((c) => FundAdapter())
       ..registerSingleton((c) => FundTransactionAdapter())
       ..registerSingleton((c) => UserProfileAdapter(
-          fundParticipationAdapter: c.resolve<FundParticipationAdapter>()));
+          fundParticipationAdapter: c.resolve<FundParticipationAdapter>()))
+      ..registerSingleton((c) => FundParticipationAdapter());
   }
 
   @override
@@ -48,6 +49,7 @@ class _$Injector extends Injector {
           UserProfileRepositoryImpl(
               userProfileRemoteDataSource:
                   c.resolve<UserProfileRemoteDataSource>(),
-              userProfileAdapter: c.resolve<UserProfileAdapter>()));
+              userProfileAdapter: c.resolve<UserProfileAdapter>(),
+              fundParticipationAdapter: c.resolve<FundParticipationAdapter>()));
   }
 }

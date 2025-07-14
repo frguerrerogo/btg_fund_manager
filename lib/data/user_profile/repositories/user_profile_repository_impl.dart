@@ -1,4 +1,5 @@
-import 'package:btg_fund_manager/data/core/adapters/adapters.dart' show UserProfileAdapter;
+import 'package:btg_fund_manager/data/core/adapters/adapters.dart'
+    show UserProfileAdapter, FundParticipationAdapter;
 import 'package:btg_fund_manager/data/core/datasources/remote/remote.dart'
     show UserProfileRemoteDataSource;
 import 'package:btg_fund_manager/domain/core/entities.dart'
@@ -8,10 +9,12 @@ import 'package:btg_fund_manager/domain/core/repositories.dart' show UserProfile
 class UserProfileRepositoryImpl implements UserProfileRepository {
   final UserProfileRemoteDataSource userProfileRemoteDataSource;
   final UserProfileAdapter userProfileAdapter;
+  final FundParticipationAdapter fundParticipationAdapter;
 
   UserProfileRepositoryImpl({
     required this.userProfileRemoteDataSource,
     required this.userProfileAdapter,
+    required this.fundParticipationAdapter,
   });
 
   @override
@@ -21,20 +24,19 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   }
 
   @override
-  Future<void> updateBalance(int newBalance) {
-    // TODO: implement updateBalance
-    throw UnimplementedError();
+  Future<void> updateBalance(int newBalance) async {
+    await userProfileRemoteDataSource.updateBalance(newBalance);
   }
 
   @override
-  Future<void> updateNotificationType(NotificationType typeNotification) {
-    // TODO: implement updateNotificationType
-    throw UnimplementedError();
+  Future<void> updateNotificationType(NotificationType typeNotification) async {
+    await userProfileRemoteDataSource.updateNotificationType(typeNotification.name);
   }
 
   @override
-  Future<void> updateParticipation(List<FundParticipation> participations) {
-    // TODO: implement updateParticipation
-    throw UnimplementedError();
+  Future<void> updateParticipation(List<FundParticipation> participations) async {
+    await userProfileRemoteDataSource.updateParticipation(
+      participations.map((e) => fundParticipationAdapter.entityToModel(e)).toList(),
+    );
   }
 }

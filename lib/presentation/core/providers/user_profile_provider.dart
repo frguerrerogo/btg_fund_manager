@@ -9,6 +9,11 @@ final userProfileProvider = AsyncNotifierProvider<UserProfileNotifier, UserProfi
   UserProfileNotifier.new,
 );
 
+final userBalanceProvider = Provider<int>((ref) {
+  final profile = ref.watch(userProfileProvider).value;
+  return profile?.balance ?? 0;
+});
+
 class UserProfileNotifier extends AsyncNotifier<UserProfile> {
   late final UserProfileRepository _repository;
 

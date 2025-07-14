@@ -5,7 +5,7 @@ part 'user_profile_model.g.dart';
 
 @JsonSerializable()
 class UserProfileModel {
-  final int id;
+  final String id;
   final String name;
   final int balance;
   @JsonKey(name: 'type_notification')
