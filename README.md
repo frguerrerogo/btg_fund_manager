@@ -32,6 +32,53 @@ Para simular el backend, se utiliza [`json-server`](https://github.com/typicode/
 - **Arquitectura limpia (Clean Architecture)**: separación de capas: presentación, dominio y datos.
 - **Flutter Test**: Pruebas unitarias y de integración.
 
+## 🚀 Instalación y Configuración
+
+### Requisitos previos
+
+- **Flutter 3.29.0**
+- **Dart 3.7.0**
+- Dependencias instaladas con `flutter pub get`.
+
+### Instalación
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/frguerrerogo/btg_fund_manager.git
+   cd weather
+   ```
+
+2. Instalar dependencias:
+   ```bash
+   flutter pub get
+   ```
+3. Ejecutar la aplicación:
+    Para correr la aplicación en modo desarrollo, simplemente ejecuta:
+    ```bash
+    flutter run
+    ```
+## 📂 Estructura del Código
+
+Este proyecto sigue una arquitectura modular basada en Clean Architecture, separando las capas de presentación, dominio y datos, lo que facilita la escalabilidad y el mantenimiento.
+
+- core/ → Configuraciones generales, inyección de dependencias, temas y utilidades globales.
+- data/ → Implementación de fuentes de datos (APIs, realm) y repositorios concretos.
+- domain/ → Definición de entidades, repositorios abstractos y casos de uso.
+- presentation/ → UI, lógica de estado con Cubit/Bloc, pantallas y widgets reutilizables.
+
+Esta estructura permite un flujo limpio y desacoplado, facilitando la gestión de cambios y nuevas funcionalidades.
+
+```
+lib/
+├── core/                # Constantes, helpers, utilidades globales
+├── data/                # Servicios, modelos remotos, repositorios
+├── domain/              # Casos de uso y abstracciones
+├── presentation/        # Vistas y widgets compartidos
+│   ├── funds/           # Lógica y UI relacionada con los fondos
+│   ├── transactions/    # Historial y detalles de transacciones
+│   ├── profile/         # Preferencias del usuario y notificaciones
+```
+
 ## 👤 Autor y Contacto
 
 **Desarrollador**: Fabian Guerrero
