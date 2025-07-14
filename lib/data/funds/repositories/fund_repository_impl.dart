@@ -1,24 +1,39 @@
-import 'package:btg_fund_manager/data/core/adapters/adapters.dart' show FundAdapter;
+import 'package:btg_fund_manager/data/core/adapters/adapters.dart'
+    show FundAdapter, FundTransactionAdapter;
 import 'package:btg_fund_manager/data/core/datasources/remote/remote.dart'
-    show FundRemoteDataSource;
-import 'package:btg_fund_manager/domain/core/entities.dart' show Fund;
+    show FundsRemoteDataSource, TransactionsRemoteDataSource;
+import 'package:btg_fund_manager/domain/core/entities.dart' show Fund, FundTransaction;
 import 'package:btg_fund_manager/domain/core/repositories.dart' show FundRepository;
 
 class FundRepositoryImpl implements FundRepository {
-  final FundRemoteDataSource remoteDataSource;
-  final FundAdapter adapter;
+  final FundsRemoteDataSource fundsRemoteDataSource;
+  final TransactionsRemoteDataSource transactionsRemoteDataSource;
+  final FundAdapter fundAdapter;
+  final FundTransactionAdapter fundTransactionAdapter;
 
-  FundRepositoryImpl({required this.remoteDataSource, required this.adapter});
+  FundRepositoryImpl({
+    required this.fundsRemoteDataSource,
+    required this.transactionsRemoteDataSource,
+    required this.fundAdapter,
+    required this.fundTransactionAdapter,
+  });
 
   @override
   Future<List<Fund>> getFunds() async {
-    final models = await remoteDataSource.getFunds();
-    return models.map((m) => adapter.modelToEntity(m)).toList();
+    final models = await fundsRemoteDataSource.getFunds();
+    return models.map((m) => fundAdapter.modelToEntity(m)).toList();
   }
 
   @override
   Future<Fund> getFundById({required int id}) async {
-    final model = await remoteDataSource.getFundById(id: id);
-    return adapter.modelToEntity(model);
+    final model = await fundsRemoteDataSource.getFundById(id: id);
+    return fundAdapter.modelToEntity(model);
+  }
+
+  @override
+  Future<void> postSubscriptionToFund(FundTransaction data) async {
+    await transactionsRemoteDataSource.postSubscriptionToFund(
+      fundTransactionAdapter.entityToModel(data),
+    );
   }
 }

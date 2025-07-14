@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold, ButtonCustom;
-import 'package:btg_fund_manager/presentation/core/providers.dart' show fundByIdProvider;
+import 'package:btg_fund_manager/presentation/core/providers.dart'
+    show fundByIdProvider, subscribeToFundProvider, cancelSubscriptionProvider;
 
 class FundDetailPage extends ConsumerWidget {
   final int fundId;
@@ -15,6 +16,18 @@ class FundDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final fundAsync = ref.watch(fundByIdProvider(fundId));
     final colorScheme = Theme.of(context).colorScheme;
+
+    void showError(String message) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.red));
+    }
+
+    void showSuccess(String message) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(message), backgroundColor: Colors.green));
+    }
 
     return fundAsync.when(
       loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -67,16 +80,35 @@ class FundDetailPage extends ConsumerWidget {
                 const SizedBox(height: 15),
                 ButtonCustom(
                   text: 'Suscribir',
-                  onPressed: () {
-                    // Acción aquí
+                  onPressed: () async {
+                    final amount = int.tryParse(controller.text.trim());
+
+                    if (amount == null || amount < fund.minimumAmount) {
+                      showError('Monto inválido');
+                      return;
+                    }
+
+                    try {
+                      await ref.read(subscribeToFundProvider((fund.id, amount)).future);
+                      showSuccess('Suscripción realizada');
+                    } catch (e) {
+                      showError(e.toString());
+                    }
+                    showSuccess('Participación suscrita con éxito');
                   },
                 ),
                 const SizedBox(height: 15),
                 ButtonCustom(
-                  enable: false,
+                  enable: true,
                   text: 'Cancelar participación',
-                  onPressed: () {
-                    // Acción aquí
+                  onPressed: () async {
+                    try {
+                      //await ref.read(cancelSubscriptionProvider(fund.id).future);
+                      showSuccess('Suscripción cancelada');
+                    } catch (e) {
+                      showError(e.toString());
+                    }
+                    showSuccess('Participación cancelada con éxito');
                   },
                 ),
               ],

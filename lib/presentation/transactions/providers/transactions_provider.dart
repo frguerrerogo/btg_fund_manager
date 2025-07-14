@@ -8,37 +8,37 @@ final fundTransactionHistoryProvider = FutureProvider<List<FundTransaction>>((re
 
   return [
     FundTransaction(
-      fundId: '1',
+      fundId: 1,
       amount: 5000,
       date: DateTime.now().subtract(const Duration(days: 1)),
       type: TransactionType.subscription,
     ),
     FundTransaction(
-      fundId: '2',
+      fundId: 2,
       amount: -2500,
       date: DateTime.now().subtract(const Duration(days: 2)),
       type: TransactionType.cancellation,
     ),
     FundTransaction(
-      fundId: '3',
+      fundId: 3,
       amount: 3000,
       date: DateTime.now().subtract(const Duration(days: 3)),
       type: TransactionType.subscription,
     ),
     FundTransaction(
-      fundId: '4',
+      fundId: 4,
       amount: -1800,
       date: DateTime.now().subtract(const Duration(days: 4)),
       type: TransactionType.cancellation,
     ),
     FundTransaction(
-      fundId: '5',
+      fundId: 5,
       amount: 4200,
       date: DateTime.now().subtract(const Duration(days: 5)),
       type: TransactionType.subscription,
     ),
     FundTransaction(
-      fundId: '1',
+      fundId: 1,
       amount: -1200,
       date: DateTime.now().subtract(const Duration(days: 6)),
       type: TransactionType.cancellation,

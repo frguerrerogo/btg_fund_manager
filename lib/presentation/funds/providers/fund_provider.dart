@@ -16,3 +16,19 @@ final fundByIdProvider = FutureProvider.family<Fund, int>((ref, id) async {
   final repository = ref.watch(fundRepositoryProvider);
   return repository.getFundById(id: id);
 });
+
+final subscribeToFundProvider = FutureProvider.family<void, (int fundId, int amount)>((
+  ref,
+  tuple,
+) async {
+  final (fundId, amount) = tuple;
+  final data = FundTransaction(
+    fundId: fundId,
+    amount: amount,
+    date: DateTime.now(),
+    type: TransactionType.subscription,
+  );
+
+  final repository = ref.watch(fundRepositoryProvider);
+  await repository.postSubscriptionToFund(data);
+});

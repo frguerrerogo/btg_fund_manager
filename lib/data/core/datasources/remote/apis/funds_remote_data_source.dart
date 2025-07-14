@@ -4,18 +4,18 @@ import 'package:btg_fund_manager/data/core/models/models.dart' show FundModel;
 
 const String _baseUrl = 'http://localhost:3000';
 
-abstract class FundRemoteDataSource {
+abstract class FundsRemoteDataSource {
   Future<List<FundModel>> getFunds();
   Future<FundModel> getFundById({required int id});
 }
 
-class FundRemoteDataSourceImpl implements FundRemoteDataSource {
-  FundRemoteDataSourceImpl();
+class FundsRemoteDataSourceImpl implements FundsRemoteDataSource {
+  FundsRemoteDataSourceImpl();
 
   @override
   Future<List<FundModel>> getFunds() async {
     final uri = Uri.parse('$_baseUrl/funds');
-    final jsonResponse = await HttpHelper.getJsonFromGetRequest(uri);
+    final jsonResponse = await HttpHelper.getJsonRequest(uri);
 
     final List<dynamic> list = RemoteUtils.validateListResponse(jsonResponse);
     return list.map((json) => FundModel.fromJson(json)).toList();
@@ -24,7 +24,7 @@ class FundRemoteDataSourceImpl implements FundRemoteDataSource {
   @override
   Future<FundModel> getFundById({required int id}) async {
     final uri = Uri.parse('$_baseUrl/funds?id=$id');
-    final jsonResponse = await HttpHelper.getJsonFromGetRequest(uri);
+    final jsonResponse = await HttpHelper.getJsonRequest(uri);
 
     if (jsonResponse is List && jsonResponse.isNotEmpty) {
       return FundModel.fromJson(RemoteUtils.validateMapResponse(jsonResponse[0]));

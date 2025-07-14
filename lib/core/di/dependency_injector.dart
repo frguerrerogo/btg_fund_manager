@@ -21,11 +21,13 @@ abstract class Injector {
   }
 
   //  DataSources
-  @Register.singleton(FundRemoteDataSource, from: FundRemoteDataSourceImpl)
+  @Register.singleton(FundsRemoteDataSource, from: FundsRemoteDataSourceImpl)
+  @Register.singleton(TransactionsRemoteDataSource, from: TransactionsRemoteDataSourceImpl)
   void _registerDataSources();
 
   // Adapters
   @Register.singleton(FundAdapter)
+  @Register.singleton(FundTransactionAdapter)
   void _registerAdapters();
 
   // Repositories

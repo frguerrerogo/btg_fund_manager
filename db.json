@@ -29,11 +29,20 @@
       "category": "FIC"
     },
     {
-      "id":5,
+      "id": 5,
       "name": "FPV_BTG_PACTUAL_DINAMICA",
       "minimumAmount": 100000,
       "currency": "COP",
       "category": "FPV"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "ea0a",
+      "fundId": 1,
+      "amount": 90000,
+      "date": "2025-07-14T06:02:45.053",
+      "type": "subscription"
     }
   ]
 }
