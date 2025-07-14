@@ -16,9 +16,12 @@ class UserProfileRemoteDataSourceImpl implements UserProfileRemoteDataSource {
   UserProfileRemoteDataSourceImpl();
 
   @override
-  Future<UserProfileModel> getProfile() {
-    // TODO: implement getProfile
-    throw UnimplementedError();
+  Future<UserProfileModel> getProfile() async {
+    final uri = Uri.parse('$_baseUrl/user_pofile');
+    final jsonResponse = await HttpHelper.getJsonRequest(uri);
+
+    final Map<String, dynamic> data = RemoteUtils.validateMapResponse(jsonResponse);
+    return UserProfileModel.fromJson(data);
   }
 
   @override
@@ -38,15 +41,6 @@ class UserProfileRemoteDataSourceImpl implements UserProfileRemoteDataSource {
     // TODO: implement updateParticipation
     throw UnimplementedError();
   }
-
-  // @override
-  // Future<List<FundTransactionModel>> getTransactions() async {
-  //   final uri = Uri.parse('$_baseUrl/transactions');
-  //   final jsonResponse = await HttpHelper.getJsonRequest(uri);
-
-  //   final List<dynamic> list = RemoteUtils.validateListResponse(jsonResponse);
-  //   return list.map((json) => FundTransactionModel.fromJson(json)).toList();
-  // }
 
   // @override
   // Future<void> postSubscriptionToFund(FundTransactionModel data) async {

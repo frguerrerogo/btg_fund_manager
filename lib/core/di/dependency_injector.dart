@@ -23,16 +23,19 @@ abstract class Injector {
   //  DataSources
   @Register.singleton(FundsRemoteDataSource, from: FundsRemoteDataSourceImpl)
   @Register.singleton(TransactionsRemoteDataSource, from: TransactionsRemoteDataSourceImpl)
+  @Register.singleton(UserProfileRemoteDataSource, from: UserProfileRemoteDataSourceImpl)
   void _registerDataSources();
 
   // Adapters
   @Register.singleton(FundAdapter)
   @Register.singleton(FundTransactionAdapter)
+  @Register.singleton(UserProfileAdapter)
   void _registerAdapters();
 
   // Repositories
   @Register.singleton(FundsRepository, from: FundsRepositoryImpl)
   @Register.singleton(TransactionsRepository, from: TransactionsRepositoryImpl)
+  @Register.singleton(UserProfileRepository, from: UserProfileRepositoryImpl)
   void _registerRepositories();
 
   // Método principal que llama a todos los registros

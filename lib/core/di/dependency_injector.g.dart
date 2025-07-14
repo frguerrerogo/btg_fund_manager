@@ -14,7 +14,9 @@ class _$Injector extends Injector {
       ..registerSingleton<FundsRemoteDataSource>(
           (c) => FundsRemoteDataSourceImpl())
       ..registerSingleton<TransactionsRemoteDataSource>(
-          (c) => TransactionsRemoteDataSourceImpl());
+          (c) => TransactionsRemoteDataSourceImpl())
+      ..registerSingleton<UserProfileRemoteDataSource>(
+          (c) => UserProfileRemoteDataSourceImpl());
   }
 
   @override
@@ -22,7 +24,9 @@ class _$Injector extends Injector {
     final KiwiContainer container = KiwiContainer();
     container
       ..registerSingleton((c) => FundAdapter())
-      ..registerSingleton((c) => FundTransactionAdapter());
+      ..registerSingleton((c) => FundTransactionAdapter())
+      ..registerSingleton((c) => UserProfileAdapter(
+          fundParticipationAdapter: c.resolve<FundParticipationAdapter>()));
   }
 
   @override
@@ -39,6 +43,11 @@ class _$Injector extends Injector {
           TransactionsRepositoryImpl(
               transactionsRemoteDataSource:
                   c.resolve<TransactionsRemoteDataSource>(),
-              fundTransactionAdapter: c.resolve<FundTransactionAdapter>()));
+              fundTransactionAdapter: c.resolve<FundTransactionAdapter>()))
+      ..registerSingleton<UserProfileRepository>((c) =>
+          UserProfileRepositoryImpl(
+              userProfileRemoteDataSource:
+                  c.resolve<UserProfileRemoteDataSource>(),
+              userProfileAdapter: c.resolve<UserProfileAdapter>()));
   }
 }

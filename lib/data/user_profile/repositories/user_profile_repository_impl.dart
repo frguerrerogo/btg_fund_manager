@@ -7,14 +7,17 @@ import 'package:btg_fund_manager/domain/core/repositories.dart' show UserProfile
 
 class UserProfileRepositoryImpl implements UserProfileRepository {
   final UserProfileRemoteDataSource userProfileRemoteDataSource;
-  final UserProfileAdapter fundAdapter;
+  final UserProfileAdapter userProfileAdapter;
 
-  UserProfileRepositoryImpl({required this.userProfileRemoteDataSource, required this.fundAdapter});
+  UserProfileRepositoryImpl({
+    required this.userProfileRemoteDataSource,
+    required this.userProfileAdapter,
+  });
 
   @override
-  Future<UserProfile> getProfile() {
-    // TODO: implement getProfile
-    throw UnimplementedError();
+  Future<UserProfile> getProfile() async {
+    final model = await userProfileRemoteDataSource.getProfile();
+    return userProfileAdapter.modelToEntity(model);
   }
 
   @override
