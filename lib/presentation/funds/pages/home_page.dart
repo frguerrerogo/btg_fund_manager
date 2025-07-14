@@ -5,7 +5,7 @@ import 'package:btg_fund_manager/presentation/funds/widgets/card_info_custom.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
+import 'package:btg_fund_manager/core/core.dart' show AppTextStyles, AppUtils;
 
 import 'package:btg_fund_manager/presentation/funds/widgets/fund_card.dart';
 
@@ -50,7 +50,10 @@ class HomePage extends ConsumerWidget {
                           ).copyWith(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 4),
-                        Text(profile.balance.toString(), style: AppTextStyles.titleMedium(context)),
+                        Text(
+                          '\$ ${AppUtils.formatCurrency(profile.balance)}',
+                          style: AppTextStyles.titleMedium(context),
+                        ),
                       ],
                     ),
                   ),

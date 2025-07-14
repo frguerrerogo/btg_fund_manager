@@ -2,7 +2,7 @@ import 'package:btg_fund_manager/domain/core/entities.dart' show TransactionType
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
+import 'package:btg_fund_manager/core/core.dart' show AppTextStyles, AppUtils;
 import 'package:btg_fund_manager/presentation/core/providers.dart'
     show fundTransactionProvider, fundListProvider;
 import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold;
@@ -75,10 +75,10 @@ class TransactionsPage extends ConsumerWidget {
                               style: AppTextStyles.bodySmall(context),
                             ),
                             trailing: Text(
-                              '${isSub ? '+' : '-'}\$${tx.amount.abs().toStringAsFixed(0)}',
+                              '${isSub ? '-' : '+'}\$ ${AppUtils.formatCurrency(tx.amount)}',
                               style: AppTextStyles.bodySmall(context).copyWith(
                                 fontWeight: FontWeight.bold,
-                                color: isSub ? Colors.green : Colors.red,
+                                color: isSub ? Colors.red : Colors.green,
                               ),
                             ),
                           );
