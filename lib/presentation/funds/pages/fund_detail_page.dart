@@ -1,11 +1,12 @@
 import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
+import 'package:btg_fund_manager/domain/core/entities.dart' show TransactionType;
 import 'package:btg_fund_manager/presentation/funds/widgets/card_info_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold, ButtonCustom;
 import 'package:btg_fund_manager/presentation/core/providers.dart'
-    show fundByIdProvider, subscribeToFundProvider, cancelSubscriptionProvider;
+    show fundByIdProvider, registerFundTransactionProvider;
 
 class FundDetailPage extends ConsumerWidget {
   final int fundId;
@@ -15,6 +16,8 @@ class FundDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final fundAsync = ref.watch(fundByIdProvider(fundId));
+    final executeTransaction = ref.read(registerFundTransactionProvider);
+
     final colorScheme = Theme.of(context).colorScheme;
 
     void showError(String message) {
@@ -89,7 +92,12 @@ class FundDetailPage extends ConsumerWidget {
                     }
 
                     try {
-                      await ref.read(subscribeToFundProvider((fund.id, amount)).future);
+                      await executeTransaction(
+                        fundId: fund.id,
+                        amount: amount,
+                        type: TransactionType.subscription,
+                      );
+
                       showSuccess('Suscripción realizada');
                     } catch (e) {
                       showError(e.toString());
@@ -102,8 +110,17 @@ class FundDetailPage extends ConsumerWidget {
                   enable: true,
                   text: 'Cancelar participación',
                   onPressed: () async {
+                    final amount = int.tryParse(controller.text.trim());
+                    if (amount == null || amount < fund.minimumAmount) {
+                      showError('Monto inválido');
+                      return;
+                    }
                     try {
-                      //await ref.read(cancelSubscriptionProvider(fund.id).future);
+                      await executeTransaction(
+                        fundId: fund.id,
+                        amount: amount,
+                        type: TransactionType.cancellation,
+                      );
                       showSuccess('Suscripción cancelada');
                     } catch (e) {
                       showError(e.toString());

@@ -1,10 +1,10 @@
+import 'package:btg_fund_manager/presentation/core/providers.dart' show fundListProvider;
 import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
-import 'package:btg_fund_manager/presentation/funds/providers/fund_provider.dart'
-    show fundListProvider;
+
 import 'package:btg_fund_manager/presentation/funds/widgets/fund_card.dart';
 
 class HomePage extends ConsumerWidget {

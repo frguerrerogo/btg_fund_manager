@@ -43,6 +43,48 @@
       "amount": 90000,
       "date": "2025-07-14T06:02:45.053",
       "type": "subscription"
+    },
+    {
+      "id": "c6a3",
+      "fundId": 1,
+      "amount": 100000,
+      "date": "2025-07-14T06:30:25.635",
+      "type": "subscription"
+    },
+    {
+      "id": "518b",
+      "fundId": 1,
+      "amount": 100000,
+      "date": "2025-07-14T06:43:35.777",
+      "type": "subscription"
+    },
+    {
+      "id": "9040",
+      "fundId": 1,
+      "amount": 100000,
+      "date": "2025-07-14T06:45:12.211",
+      "type": "subscription"
+    },
+    {
+      "id": "27cb",
+      "fundId": 1,
+      "amount": 150000,
+      "date": "2025-07-14T07:12:15.242",
+      "type": "subscription"
+    },
+    {
+      "id": "b09c",
+      "fundId": 1,
+      "amount": 150000,
+      "date": "2025-07-14T07:12:23.856",
+      "type": "subscription"
+    },
+    {
+      "id": "9adc",
+      "fundId": 1,
+      "amount": 450000,
+      "date": "2025-07-14T07:13:51.717",
+      "type": "cancellation"
     }
   ]
 }

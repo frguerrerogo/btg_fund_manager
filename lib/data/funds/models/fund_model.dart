@@ -4,6 +4,7 @@ part 'fund_model.g.dart';
 
 @JsonSerializable()
 class FundModel {
+  @JsonKey(fromJson: _idFromJson)
   final int id;
   final String name;
   final double minimumAmount;
@@ -21,4 +22,14 @@ class FundModel {
   factory FundModel.fromJson(Map<String, dynamic> json) => _$FundModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$FundModelToJson(this);
+}
+
+int _idFromJson(dynamic jsonValue) {
+  if (jsonValue is int) {
+    return jsonValue;
+  } else if (jsonValue is String) {
+    return int.tryParse(jsonValue) ?? 0;
+  }
+
+  throw ArgumentError('Invalid type for ID: $jsonValue');
 }

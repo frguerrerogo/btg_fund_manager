@@ -2,7 +2,7 @@ import 'package:btg_fund_manager/data/core/providers/providers.dart' show fundRe
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:btg_fund_manager/domain/core/entities.dart';
 
-final fundByIdProvider = FutureProvider.family<Fund, int>((ref, id) async {
+final fundListProvider = FutureProvider.autoDispose<List<Fund>>((ref) async {
   final repository = ref.watch(fundRepositoryProvider);
-  return repository.getFundById(id: id);
+  return await repository.getFunds();
 });

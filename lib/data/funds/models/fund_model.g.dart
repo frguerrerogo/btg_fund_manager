@@ -7,7 +7,7 @@ part of 'fund_model.dart';
 // **************************************************************************
 
 FundModel _$FundModelFromJson(Map<String, dynamic> json) => FundModel(
-      id: (json['id'] as num).toInt(),
+      id: _idFromJson(json['id']),
       name: json['name'] as String,
       minimumAmount: (json['minimumAmount'] as num).toDouble(),
       currency: json['currency'] as String,
