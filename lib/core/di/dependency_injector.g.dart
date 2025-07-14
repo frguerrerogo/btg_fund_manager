@@ -28,10 +28,17 @@ class _$Injector extends Injector {
   @override
   void _registerRepositories() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton<FundRepository>((c) => FundRepositoryImpl(
-        fundsRemoteDataSource: c.resolve<FundsRemoteDataSource>(),
-        transactionsRemoteDataSource: c.resolve<TransactionsRemoteDataSource>(),
-        fundAdapter: c.resolve<FundAdapter>(),
-        fundTransactionAdapter: c.resolve<FundTransactionAdapter>()));
+    container
+      ..registerSingleton<FundsRepository>((c) => FundsRepositoryImpl(
+          fundsRemoteDataSource: c.resolve<FundsRemoteDataSource>(),
+          transactionsRemoteDataSource:
+              c.resolve<TransactionsRemoteDataSource>(),
+          fundAdapter: c.resolve<FundAdapter>(),
+          fundTransactionAdapter: c.resolve<FundTransactionAdapter>()))
+      ..registerSingleton<TransactionsRepository>((c) =>
+          TransactionsRepositoryImpl(
+              transactionsRemoteDataSource:
+                  c.resolve<TransactionsRemoteDataSource>(),
+              fundTransactionAdapter: c.resolve<FundTransactionAdapter>()));
   }
 }

@@ -3,15 +3,15 @@ import 'package:btg_fund_manager/data/core/adapters/adapters.dart'
 import 'package:btg_fund_manager/data/core/datasources/remote/remote.dart'
     show FundsRemoteDataSource, TransactionsRemoteDataSource;
 import 'package:btg_fund_manager/domain/core/entities.dart' show Fund, FundTransaction;
-import 'package:btg_fund_manager/domain/core/repositories.dart' show FundRepository;
+import 'package:btg_fund_manager/domain/core/repositories.dart' show FundsRepository;
 
-class FundRepositoryImpl implements FundRepository {
+class FundsRepositoryImpl implements FundsRepository {
   final FundsRemoteDataSource fundsRemoteDataSource;
   final TransactionsRemoteDataSource transactionsRemoteDataSource;
   final FundAdapter fundAdapter;
   final FundTransactionAdapter fundTransactionAdapter;
 
-  FundRepositoryImpl({
+  FundsRepositoryImpl({
     required this.fundsRemoteDataSource,
     required this.transactionsRemoteDataSource,
     required this.fundAdapter,

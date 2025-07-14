@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
 import 'package:btg_fund_manager/presentation/core/providers.dart'
-    show fundTransactionHistoryProvider, fundListProvider;
+    show fundTransactionProvider, fundListProvider;
 import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold;
 
 class TransactionsPage extends ConsumerWidget {
@@ -11,7 +11,7 @@ class TransactionsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final transactionsAsync = ref.watch(fundTransactionHistoryProvider);
+    final transactionsAsync = ref.watch(fundTransactionProvider);
     final fundsAsync = ref.watch(fundListProvider);
 
     return AppScaffold(

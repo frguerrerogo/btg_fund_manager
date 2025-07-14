@@ -31,7 +31,8 @@ abstract class Injector {
   void _registerAdapters();
 
   // Repositories
-  @Register.singleton(FundRepository, from: FundRepositoryImpl)
+  @Register.singleton(FundsRepository, from: FundsRepositoryImpl)
+  @Register.singleton(TransactionsRepository, from: TransactionsRepositoryImpl)
   void _registerRepositories();
 
   // Método principal que llama a todos los registros

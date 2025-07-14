@@ -9,7 +9,7 @@ part of 'fund_transaction_model.dart';
 FundTransactionModel _$FundTransactionModelFromJson(
         Map<String, dynamic> json) =>
     FundTransactionModel(
-      id: (json['id'] as num?)?.toInt(),
+      id: json['id'] as String?,
       fundId: (json['fundId'] as num).toInt(),
       amount: (json['amount'] as num).toInt(),
       date: json['date'] as String,

@@ -1,2 +1,5 @@
 // Funds
-export '../funds/repositories/fund_repository.dart';
+export '../funds/repositories/funds_repository.dart';
+
+// Transactions
+export '../transactions/repositories/transactions_repository.dart';

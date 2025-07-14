@@ -4,7 +4,7 @@ part 'fund_transaction_model.g.dart';
 
 @JsonSerializable()
 class FundTransactionModel {
-  final int? id;
+  final String? id;
   final int fundId;
   final int amount;
   final String date;
