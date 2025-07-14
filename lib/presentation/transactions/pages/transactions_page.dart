@@ -29,10 +29,12 @@ class TransactionsPage extends ConsumerWidget {
               ),
             );
           }
+
           return fundsAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (e, _) => Center(child: Text('Error al cargar fondos: $e')),
             data: (funds) {
+              // 🔁 Mapea ID de fondo a nombre para mostrar en cada transacción
               final fundMap = {for (var f in funds) f.id: f.name};
 
               return Padding(
@@ -40,8 +42,11 @@ class TransactionsPage extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Título de sección
                     Text('Transacciones recientes', style: AppTextStyles.titleMedium(context)),
                     const SizedBox(height: 16),
+
+                    // Lista de transacciones
                     Expanded(
                       child: ListView.separated(
                         itemCount: transactions.length,

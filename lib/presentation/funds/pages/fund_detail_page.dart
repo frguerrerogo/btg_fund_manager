@@ -31,6 +31,10 @@ class _FundDetailPageState extends ConsumerState<FundDetailPage> {
     );
   }
 
+  /// Maneja la lógica de suscripción o cancelación.
+  ///
+  /// Valida condiciones como monto mínimo y saldo disponible para suscripción.
+  /// Para cancelaciones, suma el total invertido y lo reintegra al balance.
   Future<void> _handleTransaction({
     required BuildContext context,
     required Fund fund,
@@ -52,7 +56,6 @@ class _FundDetailPageState extends ConsumerState<FundDetailPage> {
         );
         return;
       }
-
       if (amount > balance) {
         messenger.showSnackBar(
           const SnackBar(content: Text('Saldo insuficiente'), backgroundColor: Colors.red),
@@ -117,19 +120,19 @@ class _FundDetailPageState extends ConsumerState<FundDetailPage> {
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     final fundAsync = ref.watch(fundByIdProvider(widget.fundId));
     final profileAsync = ref.watch(userProfileProvider);
     final balance = ref.watch(userBalanceProvider);
-
     final colorScheme = Theme.of(context).colorScheme;
 
     return profileAsync.when(
-      loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
-      error: (e, _) => Scaffold(body: Center(child: Text('Error: $e'))),
+      loading: () => Center(child: CircularProgressIndicator()),
+      error: (e, _) => Center(child: Text('Error: $e')),
       data: (profile) => fundAsync.when(
-        loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
-        error: (e, _) => Scaffold(body: Center(child: Text('Error: $e'))),
+        loading: () => Center(child: CircularProgressIndicator()),
+        error: (e, _) => Center(child: Text('Error: $e')),
         data: (fund) {
           return AppScaffold(
             title: fund.name,
@@ -138,6 +141,7 @@ class _FundDetailPageState extends ConsumerState<FundDetailPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Información general del fondo
                   Text('Descripción general del fondo', style: AppTextStyles.titleMedium(context)),
                   const SizedBox(height: 15),
                   Row(
@@ -154,6 +158,8 @@ class _FundDetailPageState extends ConsumerState<FundDetailPage> {
                     ],
                   ),
                   const SizedBox(height: 15),
+
+                  // Campo para ingresar monto
                   TextField(
                     controller: controller,
                     keyboardType: TextInputType.number,
@@ -174,6 +180,8 @@ class _FundDetailPageState extends ConsumerState<FundDetailPage> {
                     ),
                   ),
                   const SizedBox(height: 15),
+
+                  // Botón para suscripción
                   Align(
                     alignment: Alignment.centerRight,
                     child: ButtonCustom(
@@ -196,6 +204,8 @@ class _FundDetailPageState extends ConsumerState<FundDetailPage> {
                     ),
                   ),
                   const SizedBox(height: 15),
+
+                  // Botón para cancelar participación
                   Align(
                     alignment: Alignment.centerRight,
                     child: ButtonCustom(
@@ -203,7 +213,6 @@ class _FundDetailPageState extends ConsumerState<FundDetailPage> {
                       text: 'Cancelar participación',
                       onPressed: () {
                         final amount = int.tryParse(controller.text.trim()) ?? 0;
-
                         _handleTransaction(
                           context: context,
                           fund: fund,

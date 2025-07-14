@@ -6,7 +6,6 @@ import 'package:btg_fund_manager/domain/core/entities.dart' show NotificationTyp
 import 'package:btg_fund_manager/presentation/core/providers.dart'
     show notificationMethodProvider, userProfileProvider;
 import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold, ButtonCustom;
-
 import 'package:btg_fund_manager/presentation/settings/widgets/notification_option_card.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
@@ -22,6 +21,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     super.didChangeDependencies();
 
     final profileAsync = ref.read(userProfileProvider);
+
+    // Asegura que el método de notificación en el estado refleje el perfil del usuario.
     profileAsync.whenOrNull(
       data: (profile) {
         final current = ref.read(notificationMethodProvider);
@@ -55,6 +56,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   style: AppTextStyles.titleMedium(context),
                 ),
                 const SizedBox(height: 20),
+
+                /// Opción para recibir notificaciones por email
                 NotificationOptionCard(
                   selected: selectedMethod == NotificationType.email,
                   title: 'Email',
@@ -64,6 +67,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   },
                 ),
                 const SizedBox(height: 15),
+
+                /// Opción para recibir notificaciones por SMS
                 NotificationOptionCard(
                   selected: selectedMethod == NotificationType.sms,
                   title: 'SMS',
@@ -73,6 +78,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   },
                 ),
                 const SizedBox(height: 12),
+
                 Align(
                   alignment: Alignment.centerRight,
                   child: ButtonCustom(
@@ -80,6 +86,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     onPressed: () {
                       final selected = ref.read(notificationMethodProvider);
                       ref.read(userProfileProvider.notifier).updateNotification(selected);
+
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Tipo de notificación guardado'),
@@ -92,7 +99,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ],
             );
           },
-          loading: () => const CircularProgressIndicator(),
+          loading: () => Center(child: CircularProgressIndicator()),
           error: (e, _) => Text('Error: $e'),
         ),
       ),

@@ -21,13 +21,15 @@ class HomePage extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: profileAsync.when(
-          loading: () => const CircularProgressIndicator(),
+          loading: () => Center(child: CircularProgressIndicator()),
           error: (e, _) => Text('Error: $e'),
           data: (profile) => fundsAsync.when(
             data: (funds) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 16),
+
+                // Contenedor con el saldo del usuario
                 Align(
                   child: Container(
                     padding: const EdgeInsets.all(15),
@@ -55,9 +57,12 @@ class HomePage extends ConsumerWidget {
                     ),
                   ),
                 ),
+
                 const SizedBox(height: 16),
                 Text('Fondos disponibles', style: AppTextStyles.titleMedium(context)),
                 const SizedBox(height: 16),
+
+                // Lista de fondos disponibles
                 Expanded(
                   child: ListView.separated(
                     itemCount: funds.length,
