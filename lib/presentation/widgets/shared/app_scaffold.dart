@@ -54,7 +54,14 @@ class AppScaffold extends ConsumerWidget {
               padding: const EdgeInsets.only(top: 20.0),
               child: Column(
                 children: [
-                  Text(title, style: AppTextStyles.titleLarge(context)),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      title,
+                      style: AppTextStyles.titleLarge(context),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   Expanded(child: body),
                 ],

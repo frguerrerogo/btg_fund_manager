@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:btg_fund_manager/domain/core/entities.dart' show NotificationType;
 import 'package:btg_fund_manager/presentation/core/providers.dart' show notificationMethodProvider;
-import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold;
+import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold, ButtonCustom;
 
 import 'package:btg_fund_manager/presentation/settings/widgets/notification_option_card.dart';
 
@@ -26,7 +26,7 @@ class SettingsPage extends ConsumerWidget {
               "Elige cómo te gustaría recibir notificaciones",
               style: AppTextStyles.titleMedium(context),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
             NotificationOptionCard(
               selected: selectedMethod == NotificationType.email,
               title: 'Email',
@@ -34,7 +34,7 @@ class SettingsPage extends ConsumerWidget {
               onTap: () =>
                   ref.read(notificationMethodProvider.notifier).state = NotificationType.email,
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 15),
             NotificationOptionCard(
               selected: selectedMethod == NotificationType.sms,
               title: 'SMS',
@@ -42,38 +42,15 @@ class SettingsPage extends ConsumerWidget {
               onTap: () =>
                   ref.read(notificationMethodProvider.notifier).state = NotificationType.sms,
             ),
-            const Spacer(),
-            ButtonCustom(text: 'Guardar'),
+            const SizedBox(height: 12),
+            ButtonCustom(
+              text: 'Guardar',
+              onPressed: () {
+                // Acción aquí
+              },
+            ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ButtonCustom extends StatelessWidget {
-  const ButtonCustom({super.key, required this.text});
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: colorScheme.primary,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        ),
-        onPressed: () {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text('Notification preferences saved')));
-        },
-        child: Text(text, style: AppTextStyles.bodyMedium(context).copyWith(color: Colors.white)),
       ),
     );
   }

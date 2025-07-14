@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 class HttpHelper {
-  static Future<dynamic> getJson(Uri uri) async {
+  static Future<dynamic> getJsonFromGetRequest(Uri uri) async {
     try {
       final response = await http.get(uri);
       if (response.statusCode == 200) {

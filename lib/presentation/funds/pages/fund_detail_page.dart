@@ -1,6 +1,9 @@
+import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
+import 'package:btg_fund_manager/presentation/funds/widgets/card_info_custom.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold;
+import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold, ButtonCustom;
 import 'package:btg_fund_manager/presentation/core/providers.dart' show fundByIdProvider;
 
 class FundDetailPage extends ConsumerWidget {
@@ -11,6 +14,7 @@ class FundDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final fundAsync = ref.watch(fundByIdProvider(fundId));
+    final colorScheme = Theme.of(context).colorScheme;
 
     return fundAsync.when(
       loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
@@ -19,62 +23,61 @@ class FundDetailPage extends ConsumerWidget {
         final controller = TextEditingController();
 
         return AppScaffold(
-          title: 'Fund Details',
+          title: fund.name,
           body: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: ListView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 16),
-                Text(fund.name, style: Theme.of(context).textTheme.titleLarge),
-                //Text('Managed by ${fund.manager}', style: TextStyle(color: Colors.grey.shade600)),
-                //Text('Risk Level: ${fund.riskLevel}', style: TextStyle(color: Colors.grey.shade600)),
-                const SizedBox(height: 24),
-                Text('Fund Overview', style: Theme.of(context).textTheme.titleMedium),
-                const SizedBox(height: 8),
-                //Text(fund.overview, style: Theme.of(context).textTheme.bodyMedium),
-                const SizedBox(height: 24),
-                Text('Suscripción', style: Theme.of(context).textTheme.titleMedium),
-                const SizedBox(height: 8),
+                Text('Descripción general del fondo', style: AppTextStyles.titleMedium(context)),
+                const SizedBox(height: 15),
+                Row(
+                  children: [
+                    Expanded(
+                      child: CardInfoCustom(title: 'Categoría', category: fund.category),
+                    ),
+                    Expanded(
+                      child: CardInfoCustom(
+                        title: 'Monto mínimo',
+                        category: '${fund.minimumAmount} ${fund.currency}',
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 15),
                 TextField(
                   controller: controller,
                   keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: InputDecoration(
                     hintText: 'Ingrese el monto',
                     filled: true,
-                    fillColor: Color(0xFFF3F4F6),
-                    border: OutlineInputBorder(borderSide: BorderSide.none),
+                    fillColor: const Color(0xFFF3F4F6),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: colorScheme.primary, width: 1.5),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 8),
-                const SizedBox(height: 24),
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // lógica de suscripción aquí
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    child: const Text('Suscribir'),
-                  ),
+                const SizedBox(height: 15),
+                ButtonCustom(
+                  text: 'Suscribir',
+                  onPressed: () {
+                    // Acción aquí
+                  },
                 ),
-                const SizedBox(height: 12),
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      // lógica de cancelación aquí
-                    },
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(color: Color(0xFFE5E7EB)),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    child: const Text('Cancelar participación'),
-                  ),
+                const SizedBox(height: 15),
+                ButtonCustom(
+                  enable: false,
+                  text: 'Cancelar participación',
+                  onPressed: () {
+                    // Acción aquí
+                  },
                 ),
               ],
             ),
