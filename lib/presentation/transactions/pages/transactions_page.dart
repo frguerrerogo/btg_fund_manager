@@ -21,6 +21,14 @@ class TransactionsPage extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Error al cargar transacciones: $e')),
         data: (transactions) {
+          if (transactions.isEmpty) {
+            return Center(
+              child: Text(
+                'No tienes transacciones aún.',
+                style: AppTextStyles.titleMedium(context),
+              ),
+            );
+          }
           return fundsAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (e, _) => Center(child: Text('Error al cargar fondos: $e')),

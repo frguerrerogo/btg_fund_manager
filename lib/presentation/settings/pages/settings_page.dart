@@ -27,7 +27,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         final current = ref.read(notificationMethodProvider);
         final fromProfile = profile.typeNotification;
 
-        // Solo actualiza si son distintos
         if (current != fromProfile) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             ref.read(notificationMethodProvider.notifier).state = fromProfile;
