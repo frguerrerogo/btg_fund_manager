@@ -28,8 +28,8 @@ class UserProfileNotifier extends AsyncNotifier<UserProfile> {
     state = AsyncData(await _repository.getProfile());
   }
 
-  Future<void> updateNotification(String newType) async {
-    await _repository.updateNotificationType(NotificationType.sms);
+  Future<void> updateNotification(NotificationType newType) async {
+    await _repository.updateNotificationType(newType);
     state = AsyncData(await _repository.getProfile());
   }
 

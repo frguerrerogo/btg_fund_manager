@@ -4,9 +4,8 @@
       "id": "27cb",
       "name": "Fabian Guerrero",
       "balance": 400000,
-      "type_notification": "email",
-      "participations": [
-      ]
+      "type_notification": "sms",
+      "participations": []
     }
   ],
   "funds": [
