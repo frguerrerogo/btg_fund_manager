@@ -82,7 +82,7 @@ lib/
 ├── presentation/        # Vistas y widgets compartidos
 │   ├── funds/           # Lógica y UI relacionada con los fondos
 │   ├── transactions/    # Historial y detalles de transacciones
-│   ├── profile/         # Preferencias del usuario y notificaciones
+│   ├── settings/         # Preferencias del usuario y notificaciones
 ```
 
 ## 👤 Autor y Contacto
