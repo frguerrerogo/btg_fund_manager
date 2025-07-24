@@ -6,11 +6,12 @@ La aplicación está diseñada para ofrecer una experiencia de usuario fluida, c
 
 Para simular el backend, se utiliza [`json-server`](https://github.com/typicode/json-server) con datos locales en formato JSON, lo que permite realizar peticiones HTTP como si se tratara de una API REST real.
 
+
 ## 🎥 Demo en video
 
 Puedes ver una demostración completa de la aplicación haciendo clic en el siguiente enlace:
 
-👉 [Ver demo de BTG Fund Manager](https://drive.google.com/file/d/14J-KEDOv9JbEfocmtkOEufZDsPBUh7qx/view?usp=drive_link)
+👉 [Ver demo de BTG Fund Manager](https://drive.google.com/file/d/16Dpdqe0YUDc2RA6GzDhSu8ByBsEocFGT/view?usp=sharing)
 
 ## 🚀 Características principales
 
