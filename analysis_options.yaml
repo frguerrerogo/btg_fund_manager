@@ -1,28 +1,38 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
-#
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
 
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at https://dart.dev/lints.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    # ✅ CONST & PERFORMANCE
+    prefer_const_constructors: true                         # Usa `const` siempre que se pueda.
+    prefer_const_literals_to_create_immutables: true       # Usa `const` para listas/mapas inmutables.
+    prefer_const_constructors_in_immutables: true           # Usa `const` en constructores inmutables.
+    prefer_const_declarations: true                         # Declara variables como `const` cuando sea posible.
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+    # ✅ FLUTTER UI & LAYOUT
+    sort_child_properties_last: true                        # `child:` debe ir al final del widget.
+    avoid_unnecessary_containers: true                      # Evita usar Containers si no son necesarios.
+    use_key_in_widget_constructors: true                    # Requiere que los widgets usen `Key` en el constructor.
+
+    # ✅ ESTILO Y LEGIBILIDAD
+    sort_constructors_first: true                           # Ordena constructores al inicio de la clase.
+    sort_unnamed_constructors_first: true                   # Ordena constructores sin nombre antes que los con nombre.
+    type_annotate_public_apis: true                         # Anota explícitamente el tipo en métodos públicos.
+    always_declare_return_types: true                       # Requiere declarar el tipo de retorno.
+    unnecessary_this: true                                  # Evita el uso innecesario de `this`.
+    unnecessary_overrides: true                             # Evita sobreescribir métodos si no agregan valor.
+    prefer_typing_uninitialized_variables: true             # Añade tipo a variables no inicializadas.
+    omit_local_variable_types: false                        # Evita usar `var` en locales, usa tipos explícitos.
+
+    # ✅ BUENAS PRÁCTICAS
+    always_use_package_imports: true                        # Usa `package:` en lugar de rutas relativas.
+    avoid_print: true                                       # Evita usar `print`, usa logs estructurados.
+    avoid_empty_else: true                                  # Evita bloques `else` vacíos.
+    prefer_final_locals: true                               # Usa `final` para variables locales.
+    prefer_final_in_for_each: true                          # Usa `final` en bucles `forEach`.
+    avoid_redundant_argument_values: true                   # Elimina valores redundantes en argumentos.
+    unnecessary_late: true                                  # Evita el uso innecesario de `late`.
+
+    # ✅ IMPORTS Y ORGANIZACIÓN
+    require_trailing_commas: true                           # Requiere comas al final (útil para difs y formateo).
+    depend_on_referenced_packages: true                     # Solo depende de paquetes que realmente uses.

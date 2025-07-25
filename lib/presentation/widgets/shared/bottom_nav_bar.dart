@@ -1,12 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
 import 'package:btg_fund_manager/domain/core/entities.dart' show NavItem;
+import 'package:flutter/material.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
-  final int selectedIndex;
-  final ValueChanged<int> onSelect;
-  final List<NavItem> items;
 
   const CustomBottomNavBar({
     super.key,
@@ -14,6 +10,9 @@ class CustomBottomNavBar extends StatelessWidget {
     required this.onSelect,
     required this.items,
   });
+  final int selectedIndex;
+  final ValueChanged<int> onSelect;
+  final List<NavItem> items;
 
   @override
   Widget build(BuildContext context) {

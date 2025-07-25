@@ -4,12 +4,6 @@ part 'fund_model.g.dart';
 
 @JsonSerializable()
 class FundModel {
-  @JsonKey(fromJson: _idFromJson)
-  final int id;
-  final String name;
-  final double minimumAmount;
-  final String currency;
-  final String category;
 
   const FundModel({
     required this.id,
@@ -20,6 +14,12 @@ class FundModel {
   });
 
   factory FundModel.fromJson(Map<String, dynamic> json) => _$FundModelFromJson(json);
+  @JsonKey(fromJson: _idFromJson)
+  final int id;
+  final String name;
+  final double minimumAmount;
+  final String currency;
+  final String category;
 
   Map<String, dynamic> toJson() => _$FundModelToJson(this);
 }

@@ -1,22 +1,22 @@
 import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
 import 'package:btg_fund_manager/domain/core/entities.dart' show TransactionType, Fund;
 import 'package:btg_fund_manager/domain/user_profile/entities/fund_participation.dart';
-import 'package:btg_fund_manager/presentation/funds/widgets/card_info_custom.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold, ButtonCustom;
 import 'package:btg_fund_manager/presentation/core/providers.dart'
     show
         fundByIdProvider,
         registerFundTransactionProvider,
         userProfileProvider,
         userBalanceProvider;
+import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold, ButtonCustom;
+import 'package:btg_fund_manager/presentation/funds/widgets/card_info_custom.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FundDetailPage extends ConsumerStatefulWidget {
-  final int fundId;
 
   const FundDetailPage({super.key, required this.fundId});
+  final int fundId;
 
   @override
   ConsumerState<FundDetailPage> createState() => _FundDetailPageState();
@@ -128,10 +128,10 @@ class _FundDetailPageState extends ConsumerState<FundDetailPage> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return profileAsync.when(
-      loading: () => Center(child: CircularProgressIndicator()),
+      loading: () => const Center(child: CircularProgressIndicator()),
       error: (e, _) => Center(child: Text('Error: $e')),
       data: (profile) => fundAsync.when(
-        loading: () => Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Error: $e')),
         data: (fund) {
           return AppScaffold(

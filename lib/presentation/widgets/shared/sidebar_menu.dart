@@ -3,11 +3,6 @@ import 'package:btg_fund_manager/domain/core/entities.dart' show NavItem;
 import 'package:flutter/material.dart';
 
 class SidebarMenu extends StatefulWidget {
-  final int selectedIndex;
-  final bool isExpanded;
-  final ValueChanged<int> onSelect;
-  final List<NavItem> items;
-  final VoidCallback onToggle;
 
   const SidebarMenu({
     super.key,
@@ -17,6 +12,11 @@ class SidebarMenu extends StatefulWidget {
     required this.isExpanded,
     required this.onToggle,
   });
+  final int selectedIndex;
+  final bool isExpanded;
+  final ValueChanged<int> onSelect;
+  final List<NavItem> items;
+  final VoidCallback onToggle;
 
   @override
   State<SidebarMenu> createState() => _SidebarMenuState();

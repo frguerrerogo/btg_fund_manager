@@ -21,7 +21,7 @@ class HomePage extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: profileAsync.when(
-          loading: () => Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: CircularProgressIndicator()),
           error: (e, _) => Text('Error: $e'),
           data: (profile) => fundsAsync.when(
             data: (funds) => Column(
@@ -37,10 +37,9 @@ class HomePage extends ConsumerWidget {
                     decoration: BoxDecoration(
                       color: colorScheme.primaryContainer,
                       borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: colorScheme.primary, width: 1),
+                      border: Border.all(color: colorScheme.primary),
                     ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           'Saldo',

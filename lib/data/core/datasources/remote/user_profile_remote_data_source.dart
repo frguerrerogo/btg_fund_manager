@@ -31,7 +31,7 @@ class UserProfileRemoteDataSourceImpl implements UserProfileRemoteDataSource {
   }
 
   @override
-  Future<void> updateNotificationType(typeNotification) async {
+  Future<void> updateNotificationType(String typeNotification) async {
     final uri = Uri.parse('$_baseUrl/user_profile/27cb');
     await HttpHelper.patchJsonRequest(uri, {'type_notification': typeNotification});
   }

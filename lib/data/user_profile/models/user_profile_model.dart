@@ -5,12 +5,6 @@ part 'user_profile_model.g.dart';
 
 @JsonSerializable()
 class UserProfileModel {
-  final String id;
-  final String name;
-  final int balance;
-  @JsonKey(name: 'type_notification')
-  final String typeNotification;
-  final List<FundParticipationModel> participations;
 
   UserProfileModel({
     required this.id,
@@ -21,5 +15,11 @@ class UserProfileModel {
   });
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) => _$UserProfileModelFromJson(json);
+  final String id;
+  final String name;
+  final int balance;
+  @JsonKey(name: 'type_notification')
+  final String typeNotification;
+  final List<FundParticipationModel> participations;
   Map<String, dynamic> toJson() => _$UserProfileModelToJson(this);
 }

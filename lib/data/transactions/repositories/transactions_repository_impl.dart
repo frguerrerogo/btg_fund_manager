@@ -5,13 +5,13 @@ import 'package:btg_fund_manager/domain/core/entities.dart' show FundTransaction
 import 'package:btg_fund_manager/domain/core/repositories.dart' show TransactionsRepository;
 
 class TransactionsRepositoryImpl implements TransactionsRepository {
-  final TransactionsRemoteDataSource transactionsRemoteDataSource;
-  final FundTransactionAdapter fundTransactionAdapter;
 
   TransactionsRepositoryImpl({
     required this.transactionsRemoteDataSource,
     required this.fundTransactionAdapter,
   });
+  final TransactionsRemoteDataSource transactionsRemoteDataSource;
+  final FundTransactionAdapter fundTransactionAdapter;
 
   @override
   Future<List<FundTransaction>> getTransactions() async {

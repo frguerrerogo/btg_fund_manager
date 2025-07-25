@@ -4,9 +4,9 @@ import 'package:btg_fund_manager/core/core.dart' show AppTextStyles, FundDetailR
 import 'package:btg_fund_manager/domain/core/entities.dart' show Fund;
 
 class FundCard extends StatelessWidget {
-  final Fund fund;
 
   const FundCard({super.key, required this.fund});
+  final Fund fund;
 
   @override
   Widget build(BuildContext context) {

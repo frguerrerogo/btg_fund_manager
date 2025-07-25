@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
 
 class NotificationOptionCard extends StatelessWidget {
-  final bool selected;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
 
   const NotificationOptionCard({
     super.key,
@@ -15,6 +11,10 @@ class NotificationOptionCard extends StatelessWidget {
     required this.subtitle,
     required this.onTap,
   });
+  final bool selected;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {

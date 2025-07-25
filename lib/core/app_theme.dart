@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
+  AppTheme({this.selectedColor = Colors.blue, this.isDarkmode = false});
+
   final Color? selectedColor;
   final bool? isDarkmode;
-
-  AppTheme({this.selectedColor = Colors.blue, this.isDarkmode = false});
 
   ThemeData getTheme() => ThemeData(
     useMaterial3: true,

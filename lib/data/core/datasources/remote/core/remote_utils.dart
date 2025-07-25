@@ -4,7 +4,7 @@ class RemoteUtils {
     if (jsonResponse is Map<String, dynamic>) {
       return jsonResponse;
     } else {
-      throw FormatException("Invalid JSON format: Expected a map");
+      throw const FormatException("Invalid JSON format: Expected a map");
     }
   }
 
@@ -13,7 +13,7 @@ class RemoteUtils {
     if (jsonResponse is List) {
       return jsonResponse;
     } else {
-      throw FormatException("Invalid JSON format: Expected a list");
+      throw const FormatException("Invalid JSON format: Expected a list");
     }
   }
 

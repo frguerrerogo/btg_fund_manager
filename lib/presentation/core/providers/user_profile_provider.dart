@@ -48,7 +48,7 @@ class UserProfileNotifier extends AsyncNotifier<UserProfile> {
 
   /// Fuerza la recarga del perfil del usuario.
   void refreshProfile() async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = AsyncData(await _repository.getProfile());
   }
 }

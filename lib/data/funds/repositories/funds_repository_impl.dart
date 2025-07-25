@@ -6,10 +6,6 @@ import 'package:btg_fund_manager/domain/core/entities.dart' show Fund, FundTrans
 import 'package:btg_fund_manager/domain/core/repositories.dart' show FundsRepository;
 
 class FundsRepositoryImpl implements FundsRepository {
-  final FundsRemoteDataSource fundsRemoteDataSource;
-  final TransactionsRemoteDataSource transactionsRemoteDataSource;
-  final FundAdapter fundAdapter;
-  final FundTransactionAdapter fundTransactionAdapter;
 
   FundsRepositoryImpl({
     required this.fundsRemoteDataSource,
@@ -17,6 +13,10 @@ class FundsRepositoryImpl implements FundsRepository {
     required this.fundAdapter,
     required this.fundTransactionAdapter,
   });
+  final FundsRemoteDataSource fundsRemoteDataSource;
+  final TransactionsRemoteDataSource transactionsRemoteDataSource;
+  final FundAdapter fundAdapter;
+  final FundTransactionAdapter fundTransactionAdapter;
 
   @override
   Future<List<Fund>> getFunds() async {

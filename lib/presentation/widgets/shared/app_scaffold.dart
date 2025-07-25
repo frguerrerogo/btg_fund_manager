@@ -1,21 +1,20 @@
 import 'package:btg_fund_manager/core/core.dart'
     show AppTextStyles, HomeRoute, TransactionsRoute, SettingsRoute;
+import 'package:btg_fund_manager/core/extensions/responsive_context.dart';
 import 'package:btg_fund_manager/domain/core/entities.dart' show NavItem;
 import 'package:btg_fund_manager/presentation/core/providers.dart' show navigationIndexProvider;
+import 'package:btg_fund_manager/presentation/core/providers/navigation_provider.dart'
+    show isSidebarExpandedProvider;
 import 'package:btg_fund_manager/presentation/widgets/shared/bottom_nav_bar.dart';
 import 'package:btg_fund_manager/presentation/widgets/shared/sidebar_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:btg_fund_manager/core/extensions/responsive_context.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/providers/navigation_provider.dart' show isSidebarExpandedProvider;
-
 class AppScaffold extends ConsumerWidget {
+  AppScaffold({super.key, required this.body, required this.title, this.showBackButton = false});
   final Widget body;
   final String title;
   final bool showBackButton;
-
-  AppScaffold({super.key, required this.body, required this.title, this.showBackButton = false});
 
   final List<NavItem> items = [
     NavItem(

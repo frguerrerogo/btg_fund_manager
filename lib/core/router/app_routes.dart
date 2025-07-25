@@ -11,16 +11,16 @@ class HomeRoute extends GoRouteData with _$HomeRoute {
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return NoTransitionPage(child: const HomePage());
+    return const NoTransitionPage(child: HomePage());
   }
 }
 
 /// FUND DETAIL
 @TypedGoRoute<FundDetailRoute>(path: '/fund-detail/:id')
 class FundDetailRoute extends GoRouteData with _$FundDetailRoute {
-  final int id;
 
   const FundDetailRoute({required this.id});
+  final int id;
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
@@ -34,7 +34,7 @@ class TransactionsRoute extends GoRouteData with _$TransactionsRoute {
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      NoTransitionPage(child: TransactionsPage());
+      const NoTransitionPage(child: TransactionsPage());
 }
 
 /// SETTINGS
@@ -44,5 +44,5 @@ class SettingsRoute extends GoRouteData with _$SettingsRoute {
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      NoTransitionPage(child: SettingsPage());
+      const NoTransitionPage(child: SettingsPage());
 }

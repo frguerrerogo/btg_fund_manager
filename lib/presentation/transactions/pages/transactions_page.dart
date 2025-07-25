@@ -35,7 +35,7 @@ class TransactionsPage extends ConsumerWidget {
             error: (e, _) => Center(child: Text('Error al cargar fondos: $e')),
             data: (funds) {
               // 🔁 Mapea ID de fondo a nombre para mostrar en cada transacción
-              final fundMap = {for (var f in funds) f.id: f.name};
+              final fundMap = {for (final f in funds) f.id: f.name};
 
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),

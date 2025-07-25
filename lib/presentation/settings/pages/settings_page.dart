@@ -1,12 +1,11 @@
 import 'package:btg_fund_manager/core/core.dart' show AppTextStyles;
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:btg_fund_manager/domain/core/entities.dart' show NotificationType;
 import 'package:btg_fund_manager/presentation/core/providers.dart'
     show notificationMethodProvider, userProfileProvider;
 import 'package:btg_fund_manager/presentation/core/widgets.dart' show AppScaffold, ButtonCustom;
 import 'package:btg_fund_manager/presentation/settings/widgets/notification_option_card.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
@@ -88,7 +87,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       ref.read(userProfileProvider.notifier).updateNotification(selected);
 
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                        const SnackBar(
                           content: Text('Tipo de notificación guardado'),
                           backgroundColor: Colors.green,
                         ),
@@ -99,7 +98,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ],
             );
           },
-          loading: () => Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: CircularProgressIndicator()),
           error: (e, _) => Text('Error: $e'),
         ),
       ),

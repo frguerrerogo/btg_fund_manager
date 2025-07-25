@@ -4,9 +4,9 @@ import 'package:btg_fund_manager/data/core/models/models.dart' show UserProfileM
 import 'package:btg_fund_manager/domain/core/entities.dart' show UserProfile, NotificationTypeX;
 
 class UserProfileAdapter extends Adapter<UserProfile, UserProfileModel> {
-  final FundParticipationAdapter fundParticipationAdapter;
 
   UserProfileAdapter({required this.fundParticipationAdapter});
+  final FundParticipationAdapter fundParticipationAdapter;
 
   @override
   UserProfileModel entityToModel(UserProfile entity) {

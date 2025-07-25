@@ -4,11 +4,6 @@ part 'fund_transaction_model.g.dart';
 
 @JsonSerializable()
 class FundTransactionModel {
-  final String? id;
-  final int fundId;
-  final int amount;
-  final String date;
-  final String type;
 
   FundTransactionModel({
     this.id,
@@ -20,6 +15,11 @@ class FundTransactionModel {
 
   factory FundTransactionModel.fromJson(Map<String, dynamic> json) =>
       _$FundTransactionModelFromJson(json);
+  final String? id;
+  final int fundId;
+  final int amount;
+  final String date;
+  final String type;
 
   Map<String, dynamic> toJson() {
     final jsonMap = _$FundTransactionModelToJson(this);
