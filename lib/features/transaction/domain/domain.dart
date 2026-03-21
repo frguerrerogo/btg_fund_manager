@@ -4,3 +4,4 @@ library;
 
 // Entities
 export 'entities/transaction_entity.dart';
+export 'repositories/transaction_repository.dart';

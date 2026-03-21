@@ -5,3 +5,4 @@ library;
 // Entities
 export 'entities/active_subscription_entity.dart';
 export 'entities/user_entity.dart';
+export 'repositories/user_repository.dart';

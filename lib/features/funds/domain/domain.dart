@@ -3,3 +3,4 @@
 library;
 
 export 'entities/fund_entity.dart';
+export 'repositories/funds_repository.dart';
