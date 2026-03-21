@@ -6,3 +6,5 @@ library;
 export 'entities/active_subscription_entity.dart';
 export 'entities/user_entity.dart';
 export 'repositories/user_repository.dart';
+export 'usecases/get_user_use_case.dart';
+export 'usecases/validate_balance_use_case.dart';
