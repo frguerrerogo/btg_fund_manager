@@ -7,18 +7,15 @@ import 'package:btg_funds/core/core.dart'
         ErrorMappingExtension,
         ErrorWidgetLayout,
         LoadingWidget,
+        LocalizationExtension,
         ResponsiveExtension,
         SnackBarExtension;
-import 'package:btg_funds/features/funds/domain/domain.dart'
-    show
-        AlreadySubscribedException,
-        FundEntity,
-        InsufficientBalanceException,
-        NotSubscribedException;
+import 'package:btg_funds/features/funds/domain/domain.dart' show FundEntity;
 import 'package:btg_funds/features/funds/presentation/presentation.dart'
     show
         BalanceBanner,
         FundCard,
+        FundsBusinessErrorMappingExtension,
         FundsState,
         NotificationSelector,
         NotificationSelectorState,
@@ -43,6 +40,8 @@ class FundsPage extends ConsumerStatefulWidget {
 class _FundsPageState extends ConsumerState<FundsPage> {
   late NotificationMethod _notificationMethod;
 
+  ProviderSubscription<AsyncValue<FundsState>>? _errorListener;
+
   String? _lastErrorMessage;
   DateTime? _lastErrorTime;
 
@@ -50,7 +49,13 @@ class _FundsPageState extends ConsumerState<FundsPage> {
   void initState() {
     super.initState();
     _notificationMethod = NotificationMethod.email;
-    _setupErrorListener();
+    _errorListener = _setupErrorListener();
+  }
+
+  @override
+  void dispose() {
+    _errorListener?.close();
+    super.dispose();
   }
 
   @override
@@ -60,7 +65,7 @@ class _FundsPageState extends ConsumerState<FundsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Fondos disponibles',
+          context.l10n.fundsPageTitle,
           style: context.textTheme.headlineLarge?.copyWith(
             color: context.colors.primary,
           ),
@@ -105,7 +110,7 @@ class _FundsPageState extends ConsumerState<FundsPage> {
                   padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   child: Center(
                     child: Text(
-                      'No hay fondos disponibles',
+                      context.l10n.emptyFundsList,
                       style: context.textTheme.bodyLarge,
                     ),
                   ),
@@ -141,14 +146,16 @@ class _FundsPageState extends ConsumerState<FundsPage> {
     );
   }
 
-  void _setupErrorListener() {
-    ref.listen<AsyncValue<FundsState>>(
+  ProviderSubscription<AsyncValue<FundsState>> _setupErrorListener() {
+    return ref.listenManual<AsyncValue<FundsState>>(
       fundsControllerProvider,
       (previous, next) {
         if (!next.hasError) return;
 
         final error = next.error;
-        final message = _mapBusinessErrorToMessage(error);
+        final message = FundsBusinessErrorMappingExtension(
+          error,
+        ).mapFundsBusinessErrorToMessage(context);
 
         if (message == null) return;
 
@@ -171,22 +178,6 @@ class _FundsPageState extends ConsumerState<FundsPage> {
     );
   }
 
-  String? _mapBusinessErrorToMessage(Object? error) {
-    if (error is InsufficientBalanceException) {
-      return 'No cuenta con saldo suficiente';
-    }
-
-    if (error is AlreadySubscribedException) {
-      return 'Ya está suscrito a este fondo';
-    }
-
-    if (error is NotSubscribedException) {
-      return 'No está suscrito a este fondo';
-    }
-
-    return null;
-  }
-
   Future<void> _onSubscribe(FundEntity fund) async {
     final confirmed = await _showSubscribeDialog(fund);
     if (!confirmed) return;
@@ -202,7 +193,7 @@ class _FundsPageState extends ConsumerState<FundsPage> {
 
     if (mounted && success) {
       context.showSuccessSnackBar(
-        'Suscripción a ${fund.name} exitosa',
+        context.l10n.subscriptionSuccessMessage(fund.name),
       );
     }
   }
@@ -222,7 +213,7 @@ class _FundsPageState extends ConsumerState<FundsPage> {
 
     if (mounted && success) {
       context.showSuccessSnackBar(
-        'Cancelación de ${fund.name} exitosa',
+        context.l10n.cancellationSuccessMessage(fund.name),
       );
     }
   }
@@ -233,11 +224,11 @@ class _FundsPageState extends ConsumerState<FundsPage> {
     return await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Confirmar suscripción'),
+            title: Text(context.l10n.confirmSubscriptionTitle),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('¿Desea suscribirse a ${fund.name}?'),
+                Text(context.l10n.confirmSubscriptionMessage(fund.name)),
                 const SizedBox(height: AppSpacing.lg),
                 NotificationSelector(
                   key: selectorKey,
@@ -248,14 +239,14 @@ class _FundsPageState extends ConsumerState<FundsPage> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context, false),
-                child: const Text('Cancelar'),
+                child: Text(context.l10n.cancelButtonLabel),
               ),
               ElevatedButton(
                 onPressed: () {
                   _notificationMethod = selectorKey.currentState!.selectedMethod;
                   Navigator.pop(context, true);
                 },
-                child: const Text('Confirmar'),
+                child: Text(context.l10n.confirmButtonLabel),
               ),
             ],
           ),
@@ -267,21 +258,21 @@ class _FundsPageState extends ConsumerState<FundsPage> {
     return await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Cancelar suscripción'),
+            title: Text(context.l10n.cancelSubscriptionTitle),
             content: Text(
-              '¿Seguro que deseas cancelar ${fund.name}?',
+              context.l10n.cancelSubscriptionMessage(fund.name),
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context, false),
-                child: const Text('No'),
+                child: Text(context.l10n.noButtonLabel),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: context.colors.error,
                 ),
                 onPressed: () => Navigator.pop(context, true),
-                child: const Text('Sí, cancelar'),
+                child: Text(context.l10n.yesCancelButtonLabel),
               ),
             ],
           ),

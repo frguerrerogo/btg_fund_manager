@@ -1,3 +1,4 @@
+import 'package:btg_funds/core/core.dart' show LocalizationExtension;
 import 'package:btg_funds/core/extensions/currency_formatter.dart';
 import 'package:btg_funds/core/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class BalanceBanner extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Saldo disponible',
+                  context.l10n.balanceLabel,
                   style: context.textTheme.labelLarge?.copyWith(
                     color: context.colors.onPrimary,
                     fontWeight: FontWeight.w700,
@@ -57,7 +58,7 @@ class BalanceBanner extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                'Fondos suscritos',
+                context.l10n.subscribedFundsLabel,
                 style: context.textTheme.labelLarge?.copyWith(
                   color: context.colors.onPrimary,
                   fontWeight: FontWeight.w700,

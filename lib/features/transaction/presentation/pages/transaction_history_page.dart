@@ -6,6 +6,7 @@ import 'package:btg_funds/core/core.dart'
         ErrorMappingExtension,
         ErrorWidgetLayout,
         LoadingWidget,
+        LocalizationExtension,
         ResponsiveExtension;
 import 'package:btg_funds/features/transaction/presentation/presentation.dart'
     show TransactionState, TransactionTile, transactionControllerProvider;
@@ -26,7 +27,7 @@ class TransactionHistoryPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Historial de transacciones',
+          context.l10n.transactionHistoryPageTitle,
           style: context.textTheme.headlineLarge?.copyWith(
             color: context.colors.primary,
           ),
@@ -64,7 +65,7 @@ class TransactionHistoryPage extends ConsumerWidget {
                   ),
                   const SizedBox(height: AppSpacing.md),
                   Text(
-                    'No hay transacciones aún',
+                    context.l10n.emptyTransactionsList,
                     style: context.textTheme.bodyMedium?.copyWith(
                       color: context.colors.placeholder,
                     ),

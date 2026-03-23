@@ -1,6 +1,8 @@
 import 'package:btg_funds/app/router/router.dart' show appRouter;
 import 'package:btg_funds/core/core.dart' show AppTheme;
+import 'package:btg_funds/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 /// The root widget of the application.
 ///
@@ -17,6 +19,13 @@ class App extends StatelessWidget {
       darkTheme: AppTheme.dark,
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }

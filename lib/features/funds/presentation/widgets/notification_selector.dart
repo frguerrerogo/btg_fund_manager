@@ -1,3 +1,4 @@
+import 'package:btg_funds/core/core.dart' show LocalizationExtension;
 import 'package:btg_funds/core/theme/theme.dart';
 import 'package:btg_funds/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:flutter/material.dart';
@@ -37,21 +38,21 @@ class NotificationSelectorState extends State<NotificationSelector> {
     return Row(
       children: [
         Text(
-          'Notificación:',
+          context.l10n.notificationMethodLabel,
           style: context.textTheme.labelLarge,
         ),
         const SizedBox(width: AppSpacing.md),
         SegmentedButton<NotificationMethod>(
-          segments: const [
+          segments: [
             ButtonSegment(
               value: NotificationMethod.email,
-              icon: Icon(Icons.email_outlined, size: AppSpacing.iconSm),
-              label: Text('Email'),
+              icon: const Icon(Icons.email_outlined, size: AppSpacing.iconSm),
+              label: Text(context.l10n.notificationMethodEmail),
             ),
             ButtonSegment(
               value: NotificationMethod.sms,
-              icon: Icon(Icons.sms_outlined, size: AppSpacing.iconSm),
-              label: Text('SMS'),
+              icon: const Icon(Icons.sms_outlined, size: AppSpacing.iconSm),
+              label: Text(context.l10n.notificationMethodSms),
             ),
           ],
           selected: {_selectedMethod},

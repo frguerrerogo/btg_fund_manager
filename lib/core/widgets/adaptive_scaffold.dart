@@ -1,7 +1,8 @@
 // lib/core/widgets/adaptive_scaffold.dart
 
 import 'package:btg_funds/app/router/router.dart';
-import 'package:btg_funds/core/core.dart' show AppBorderRadius, AppSpacing, AppThemeExtension;
+import 'package:btg_funds/core/core.dart'
+    show AppBorderRadius, AppSpacing, AppThemeExtension, LocalizationExtension;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,18 +19,20 @@ class AdaptiveScaffold extends StatelessWidget {
   /// Routed [Widget] displayed in the scaffold body.
   final Widget child;
 
-  static const _destinations = [
-    NavigationDestination(
-      icon: Icon(Icons.account_balance_outlined),
-      selectedIcon: Icon(Icons.account_balance),
-      label: 'Fondos',
-    ),
-    NavigationDestination(
-      icon: Icon(Icons.receipt_long_outlined),
-      selectedIcon: Icon(Icons.receipt_long),
-      label: 'Historial',
-    ),
-  ];
+  List<NavigationDestination> _getDestinations(BuildContext context) {
+    return [
+      NavigationDestination(
+        icon: const Icon(Icons.account_balance_outlined),
+        selectedIcon: const Icon(Icons.account_balance),
+        label: context.l10n.fundsTabLabel,
+      ),
+      NavigationDestination(
+        icon: const Icon(Icons.receipt_long_outlined),
+        selectedIcon: const Icon(Icons.receipt_long),
+        label: context.l10n.historyTabLabel,
+      ),
+    ];
+  }
 
   int _selectedIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.toString();
@@ -49,6 +52,7 @@ class AdaptiveScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedIndex = _selectedIndex(context);
+    final destinations = _getDestinations(context);
 
     if (context.isWide) {
       return Scaffold(
@@ -69,7 +73,7 @@ class AdaptiveScaffold extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      'BTG',
+                      context.l10n.appLogoText,
                       style: context.textTheme.headlineLarge?.copyWith(
                         color: context.colors.onPrimary,
                         fontWeight: FontWeight.bold,
@@ -78,8 +82,8 @@ class AdaptiveScaffold extends StatelessWidget {
                   ),
                 ),
               ),
-              destinations: List.generate(_destinations.length, (index) {
-                final d = _destinations[index];
+              destinations: List.generate(destinations.length, (index) {
+                final d = destinations[index];
                 final isSelected = selectedIndex == index;
                 return NavigationRailDestination(
                   icon: d.icon,
@@ -109,8 +113,8 @@ class AdaptiveScaffold extends StatelessWidget {
         onDestinationSelected: (i) => _onDestinationSelected(context, i),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
         indicatorColor: context.colors.onPrimary,
-        destinations: List.generate(_destinations.length, (index) {
-          final d = _destinations[index];
+        destinations: List.generate(destinations.length, (index) {
+          final d = destinations[index];
           return NavigationDestination(
             icon: d.icon,
             selectedIcon: Ink(

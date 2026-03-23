@@ -1,4 +1,4 @@
-import 'package:btg_funds/core/core.dart' show AppSpacing, AppThemeExtension;
+import 'package:btg_funds/core/core.dart' show AppSpacing, AppThemeExtension, LocalizationExtension;
 import 'package:flutter/material.dart';
 
 /// A centered error message with an optional retry action.
@@ -38,7 +38,7 @@ class AppStateErrorWidget extends StatelessWidget {
               const SizedBox(height: AppSpacing.lg),
               ElevatedButton(
                 onPressed: onRetry,
-                child: const Text('Reintentar'),
+                child: Text(context.l10n.retryButtonLabel),
               ),
             ],
           ],

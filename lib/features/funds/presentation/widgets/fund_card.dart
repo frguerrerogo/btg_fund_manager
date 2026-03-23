@@ -1,3 +1,4 @@
+import 'package:btg_funds/core/core.dart' show LocalizationExtension;
 import 'package:btg_funds/core/extensions/currency_formatter.dart';
 import 'package:btg_funds/core/theme/theme.dart';
 import 'package:btg_funds/features/funds/domain/entities/fund_entity.dart';
@@ -56,7 +57,7 @@ class FundCard extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   Text(
-                    'Monto mínimo: ${fund.minimumAmount.formatCOP()}',
+                    '${context.l10n.minimumAmountLabel}: ${fund.minimumAmount.formatCOP()}',
                     style: context.textTheme.bodyMedium?.copyWith(
                       color: context.colors.onSurfaceVariant,
                     ),
@@ -71,7 +72,7 @@ class FundCard extends StatelessWidget {
                           onPressed: onCancel,
                           icon: const Icon(Icons.cancel_outlined, size: AppSpacing.iconLg),
                           label: Text(
-                            'Cancelar',
+                            context.l10n.cancelButtonLabel,
                             style: context.textTheme.labelLarge?.copyWith(
                               fontWeight: FontWeight.w700,
                             ),
@@ -92,7 +93,7 @@ class FundCard extends StatelessWidget {
                           onPressed: onSubscribe,
                           icon: const Icon(Icons.add, size: AppSpacing.iconLg),
                           label: Text(
-                            'Suscribirse',
+                            context.l10n.subscribeButtonLabel,
                             style: context.textTheme.labelLarge?.copyWith(
                               color: context.colors.onPrimary,
                               fontWeight: FontWeight.w700,
@@ -135,7 +136,7 @@ class _CategoryBadge extends StatelessWidget {
         borderRadius: AppBorderRadius.chip,
       ),
       child: Text(
-        isFpv ? 'FPV' : 'FIC',
+        isFpv ? context.l10n.fundCategoryFpv : context.l10n.fundCategoryFic,
         style: context.textTheme.labelMedium?.copyWith(
           color: isFpv ? context.colors.success : context.colors.info,
         ),

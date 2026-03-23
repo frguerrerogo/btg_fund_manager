@@ -1,0 +1,88 @@
+{
+  "@@locale": "en",
+  "appTitle": "BTG Funds",
+  "appLogoText": "BTG",
+
+  "fundsTabLabel": "Funds",
+  "historyTabLabel": "History",
+  "fundsPageTitle": "Available Funds",
+  "transactionHistoryPageTitle": "Transaction History",
+
+  "emptyFundsList": "No funds available",
+  "emptyTransactionsList": "No transactions yet",
+
+  "subscriptionTransactionLabel": "Subscription",
+  "cancellationTransactionLabel": "Cancellation",
+
+  "balanceLabel": "Available Balance",
+  "subscribedFundsLabel": "Subscribed Funds",
+  "minimumAmountLabel": "Minimum Amount",
+
+  "fundCategoryFpv": "FPV",
+  "fundCategoryFic": "CIF",
+
+  "notificationMethodLabel": "Notification Method",
+  "notificationMethodEmail": "Email",
+  "notificationMethodSms": "SMS",
+
+  "subscribeButtonLabel": "Subscribe",
+  "cancelButtonLabel": "Cancel",
+  "confirmButtonLabel": "Confirm",
+  "retryButtonLabel": "Retry",
+  "noButtonLabel": "No",
+  "yesCancelButtonLabel": "Yes, cancel",
+
+  "confirmSubscriptionTitle": "Confirm Subscription",
+  "confirmSubscriptionMessage": "Do you want to subscribe to {fundName}?",
+  "@confirmSubscriptionMessage": {
+    "description": "Message asking user to confirm fund subscription",
+    "placeholders": {
+      "fundName": {
+        "type": "String",
+        "example": "Strategic Fund"
+      }
+    }
+  },
+
+  "cancelSubscriptionTitle": "Cancel Subscription",
+  "cancelSubscriptionMessage": "Are you sure you want to cancel {fundName}?",
+  "@cancelSubscriptionMessage": {
+    "description": "Message asking user to confirm fund cancellation",
+    "placeholders": {
+      "fundName": {
+        "type": "String",
+        "example": "Strategic Fund"
+      }
+    }
+  },
+
+  "subscriptionSuccessMessage": "Subscription to {fundName} successful",
+  "@subscriptionSuccessMessage": {
+    "description": "Success message after subscribing to a fund",
+    "placeholders": {
+      "fundName": {
+        "type": "String",
+        "example": "Strategic Fund"
+      }
+    }
+  },
+
+  "cancellationSuccessMessage": "Cancellation of {fundName} successful",
+  "@cancellationSuccessMessage": {
+    "description": "Success message after cancelling a fund",
+    "placeholders": {
+      "fundName": {
+        "type": "String",
+        "example": "Strategic Fund"
+      }
+    }
+  },
+
+  "errorInsufficientBalance": "Insufficient balance",
+  "errorAlreadySubscribed": "You are already subscribed to this fund",
+  "errorNotSubscribed": "You are not subscribed to this fund",
+
+  "errorConnectionIssue": "Check your internet connection",
+  "errorServerIssue": "Server error. Try again later",
+  "errorGeneric": "An unexpected error occurred"
+}

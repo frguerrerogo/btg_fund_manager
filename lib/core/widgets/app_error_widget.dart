@@ -1,4 +1,5 @@
-import 'package:btg_funds/core/core.dart' show AppBorderRadius, AppSpacing, AppThemeExtension;
+import 'package:btg_funds/core/core.dart'
+    show AppBorderRadius, AppSpacing, AppThemeExtension, LocalizationExtension;
 import 'package:flutter/material.dart';
 
 /// Layout type for error display
@@ -89,7 +90,7 @@ class AppErrorWidget extends StatelessWidget {
                   visualDensity: VisualDensity.compact,
                 ),
                 child: Text(
-                  'Reintentar',
+                  context.l10n.retryButtonLabel,
                   style: context.textTheme.bodyMedium!.copyWith(
                     color: context.colors.onPrimary,
                   ),
@@ -126,7 +127,7 @@ class AppErrorWidget extends StatelessWidget {
               const SizedBox(height: AppSpacing.lg),
               ElevatedButton(
                 onPressed: onRetry,
-                child: const Text('Reintentar'),
+                child: Text(context.l10n.retryButtonLabel),
               ),
             ],
           ],

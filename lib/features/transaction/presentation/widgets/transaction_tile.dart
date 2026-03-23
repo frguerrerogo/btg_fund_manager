@@ -1,3 +1,4 @@
+import 'package:btg_funds/core/core.dart' show LocalizationExtension;
 import 'package:btg_funds/core/extensions/currency_formatter.dart';
 import 'package:btg_funds/core/extensions/date_time_formatter.dart';
 import 'package:btg_funds/core/theme/theme.dart';
@@ -45,7 +46,9 @@ class TransactionTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    isSubscription ? 'Suscripción' : 'Cancelación',
+                    isSubscription
+                        ? context.l10n.subscriptionTransactionLabel
+                        : context.l10n.cancellationTransactionLabel,
                     style: context.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: isSubscription ? context.colors.error : context.colors.success,
@@ -57,7 +60,7 @@ class TransactionTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    'Notificación: ${transaction.notificationMethod == NotificationMethod.email ? 'Email' : 'SMS'}',
+                    '${context.l10n.notificationMethodLabel}: ${transaction.notificationMethod == NotificationMethod.email ? context.l10n.notificationMethodEmail : context.l10n.notificationMethodSms}',
                     style: context.textTheme.bodySmall?.copyWith(
                       color: context.colors.onSurfaceVariant,
                     ),
