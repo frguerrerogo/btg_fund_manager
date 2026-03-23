@@ -36,7 +36,9 @@ class TransactionTile extends StatelessWidget {
               ),
               child: Icon(
                 isSubscription ? Icons.arrow_downward : Icons.arrow_upward,
-                color: isSubscription ? context.colors.errorContainer : context.colors.success,
+                color: isSubscription
+                    ? context.colors.errorContainer
+                    : context.colors.successContainer,
                 size: AppSpacing.iconLg,
               ),
             ),

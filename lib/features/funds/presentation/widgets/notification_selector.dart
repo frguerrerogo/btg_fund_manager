@@ -35,13 +35,13 @@ class NotificationSelectorState extends State<NotificationSelector> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
         Text(
           context.l10n.notificationMethodLabel,
           style: context.textTheme.labelLarge,
         ),
-        const SizedBox(width: AppSpacing.md),
+        const SizedBox(height: AppSpacing.md),
         SegmentedButton<NotificationMethod>(
           segments: [
             ButtonSegment(

@@ -82,8 +82,11 @@ class TransactionHistoryPage extends ConsumerWidget {
             vertical: AppSpacing.screenVertical,
           ),
           itemCount: historyState.transactions.length,
-          itemBuilder: (context, index) => TransactionTile(
-            transaction: historyState.transactions[index],
+          itemBuilder: (context, index) => Padding(
+            padding: const EdgeInsets.only(bottom: AppSpacing.md),
+            child: TransactionTile(
+              transaction: historyState.transactions[index],
+            ),
           ),
         );
       },

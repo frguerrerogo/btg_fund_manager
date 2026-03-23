@@ -17,6 +17,7 @@ class App extends StatelessWidget {
       title: 'BTG Funds',
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
+      locale: const Locale('es'),
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [

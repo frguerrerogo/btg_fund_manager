@@ -15,7 +15,7 @@ extension SnackBarExtension on BuildContext {
         content: Text(
           message,
           style: Theme.of(this).textTheme.bodyMedium!.copyWith(
-            color: Colors.white,
+            color: Colors.black87,
             fontWeight: FontWeight.w600,
           ),
         ),
