@@ -1,10 +1,10 @@
-# BTG Funds App
+# BTG Funds
 
 Aplicación móvil Flutter para la gestión de fondos de inversión (FPV/FIC) de BTG Pactual. Esta aplicación permite a los usuarios visualizar, gestionar y realizar seguimiento de sus inversiones de forma sencilla e intuitiva.
 
 ## 📋 Descripción del Proyecto
 
-**BTG Funds App** es una solución móvil diseñada para proporcionar a los clientes de BTG Pactual una experiencia fluida en la gestión de sus fondos de inversión. La aplicación ofrece:
+**BTG Funds** es una solución móvil diseñada para proporcionar a los clientes de BTG Pactual una experiencia fluida en la gestión de sus fondos de inversión. La aplicación ofrece:
 
 - **Visualización de fondos**: Listado completo de fondos disponibles con detalles financieros
 - **Transacciones**: Registro y seguimiento de operaciones de compra/venta
@@ -12,7 +12,7 @@ Aplicación móvil Flutter para la gestión de fondos de inversión (FPV/FIC) de
 
 ## 🎬 Demo
 
-<img src="assets/videos/demo.gif" alt="BTG Funds App Demo" width="500"/>
+<img src="assets/videos/demo.gif" alt="BTG Funds Demo" width="700"/>
 
 **Opciones disponibles:**
 - 🔊 [Ver con audio en Drive](https://drive.google.com/file/d/1AX7SHt55CdJNqe0Pp8piXFuHUwBk12t3/view?usp=sharing)
@@ -28,8 +28,8 @@ Aplicación móvil Flutter para la gestión de fondos de inversión (FPV/FIC) de
 
 ```bash
 # Clonar y entrar al directorio
-git clone https://github.com/frguerrerogo/btg_funds_app
-cd btg_funds_app
+git clone https://https://gitlab.com/frguerrerogo/btg_fund_manager
+cd btg_fund_manager
 
 # Instalar dependencias
 flutter pub get
