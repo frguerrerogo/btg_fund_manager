@@ -152,4 +152,4 @@ Para preguntas o soporte, puedes contactarme en:
 - **Email**: [frguerrerogo@gmail.com](frguerrerogo@gmail.com)
 - **LinkedIn**: [frguerrerogo](https://www.linkedin.com/in/frguerrerogo/)
 
-**Última actualización:** Febrero 2026
+**Última actualización:** Marzo 23 de 2026
