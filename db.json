@@ -3,19 +3,13 @@
     {
       "id": "07FG",
       "name": "Fabian Guerrero",
-      "balance": 200000,
+      "balance": 275000,
       "active_subscriptions": [
         {
           "fund_id": "5",
           "fund_name": "FPV_BTG_PACTUAL_DINAMICA",
           "amount": 100000,
           "subscribed_at": "2026-03-23T11:23:31.283"
-        },
-        {
-          "fund_id": "1",
-          "fund_name": "FPV_BTG_PACTUAL_RECAUDADORA",
-          "amount": 75000,
-          "subscribed_at": "2026-03-23T11:24:15.237"
         },
         {
           "fund_id": "2",
@@ -121,6 +115,51 @@
       "type": "subscription",
       "notification_method": "sms",
       "created_at": "2026-03-23T11:25:08.683"
+    },
+    {
+      "id": "d1f6d3fc-6972-4cac-8917-0b3adb0a5b30",
+      "fund_id": "1",
+      "fund_name": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "amount": 75000,
+      "type": "cancellation",
+      "notification_method": "email",
+      "created_at": "2026-03-26T17:35:12.038"
+    },
+    {
+      "id": "c5cac375-8395-41d8-8867-0c18f76a7e2d",
+      "fund_id": "1",
+      "fund_name": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "amount": 75000,
+      "type": "subscription",
+      "notification_method": "sms",
+      "created_at": "2026-03-26T19:17:07.261858"
+    },
+    {
+      "id": "2e59f316-b815-4391-b3c2-4d5c5c8162f4",
+      "fund_id": "1",
+      "fund_name": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "amount": 75000,
+      "type": "cancellation",
+      "notification_method": "sms",
+      "created_at": "2026-03-26T19:17:59.907347"
+    },
+    {
+      "id": "df92422e-9b80-45a6-8135-dc99e1572528",
+      "fund_id": "1",
+      "fund_name": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "amount": 75000,
+      "type": "subscription",
+      "notification_method": "sms",
+      "created_at": "2026-03-26T19:24:31.030216"
+    },
+    {
+      "id": "1297505a-5a8b-4545-b8cc-6500ad9613d6",
+      "fund_id": "1",
+      "fund_name": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "amount": 75000,
+      "type": "cancellation",
+      "notification_method": "sms",
+      "created_at": "2026-03-26T19:27:38.224990"
     }
   ]
 }

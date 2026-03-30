@@ -14,7 +14,6 @@ import 'package:btg_funds/features/funds/domain/domain.dart'
         InsufficientBalanceException,
         NotSubscribedException,
         SubscribeFundUseCase;
-import 'package:btg_funds/features/funds/presentation/controllers/funds_state.dart' show FundsState;
 import 'package:btg_funds/features/funds/presentation/presentation.dart' show FundsState;
 import 'package:btg_funds/features/transaction/domain/domain.dart'
     show NotificationMethod, SaveTransactionUseCase, TransactionEntity, TransactionType;

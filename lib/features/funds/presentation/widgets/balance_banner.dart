@@ -22,6 +22,8 @@ class BalanceBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = context.isMobile;
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppSpacing.lg),
@@ -29,53 +31,70 @@ class BalanceBanner extends StatelessWidget {
         color: context.colors.primary,
         borderRadius: AppBorderRadius.brMd,
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(
+      child: isMobile
+          ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  context.l10n.balanceLabel,
-                  style: context.textTheme.labelLarge?.copyWith(
-                    color: context.colors.onPrimary,
-                    fontWeight: FontWeight.w700,
-                  ),
+                _buildBalanceSection(context),
+                const SizedBox(height: AppSpacing.lg),
+                _buildSubscribedSection(context),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: _buildBalanceSection(context),
                 ),
-                const SizedBox(height: AppSpacing.xs2),
-                Text(
-                  balance.formatCOP(),
-                  style: context.textTheme.displaySmall?.copyWith(
-                    color: context.colors.onPrimary,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+                _buildSubscribedSection(context),
               ],
             ),
+    );
+  }
+
+  Widget _buildBalanceSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          context.l10n.balanceLabel,
+          style: context.textTheme.labelLarge?.copyWith(
+            color: context.colors.onPrimary,
+            fontWeight: FontWeight.w700,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                context.l10n.subscribedFundsLabel,
-                style: context.textTheme.labelLarge?.copyWith(
-                  color: context.colors.onPrimary,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: AppSpacing.xs2),
-              Text(
-                '$subscribedCount',
-                style: context.textTheme.displaySmall?.copyWith(
-                  color: context.colors.onPrimary,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
+        ),
+        const SizedBox(height: AppSpacing.xs2),
+        Text(
+          balance.formatCOP(),
+          style: context.textTheme.displaySmall?.copyWith(
+            color: context.colors.onPrimary,
+            fontWeight: FontWeight.w700,
           ),
-        ],
-      ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSubscribedSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          context.l10n.subscribedFundsLabel,
+          style: context.textTheme.labelLarge?.copyWith(
+            color: context.colors.onPrimary,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const SizedBox(height: AppSpacing.xs2),
+        Text(
+          '$subscribedCount',
+          style: context.textTheme.displaySmall?.copyWith(
+            color: context.colors.onPrimary,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ],
     );
   }
 }

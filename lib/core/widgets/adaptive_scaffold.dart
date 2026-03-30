@@ -54,12 +54,12 @@ class AdaptiveScaffold extends StatelessWidget {
     final selectedIndex = _selectedIndex(context);
     final destinations = _getDestinations(context);
 
-    if (context.isWide) {
+    if (!context.isMobile) {
       return Scaffold(
         body: Row(
           children: [
             NavigationRail(
-              extended: context.isExtended,
+              extended: context.isDesktop,
               selectedIndex: selectedIndex,
               onDestinationSelected: (i) => _onDestinationSelected(context, i),
               leading: Padding(

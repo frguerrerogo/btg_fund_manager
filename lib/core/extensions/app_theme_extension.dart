@@ -22,8 +22,9 @@ import 'package:flutter/material.dart';
 /// context.isLight
 ///
 /// // Responsive
-/// context.isWide
-/// context.isExtended
+/// context.isMobile     // < 600pt
+/// context.isTablet     // >= 600pt && < 1200pt
+/// context.isDesktop    // >= 1200pt
 /// ```
 
 extension AppThemeExtension on BuildContext {
@@ -54,20 +55,26 @@ extension AppThemeExtension on BuildContext {
   TextTheme get textTheme => theme.textTheme;
 
   //* RESPONSIVE BREAKPOINTS
-  /// The minimum width for tablet/wide layout (600pt).
-  static const double _breakpointWide = 600;
+  /// The minimum width for tablet layout (600pt).
+  static const double _breakpointTablet = 600;
 
-  /// The minimum width for extended/large layout (1200pt).
-  static const double _breakpointExtended = 1200;
+  /// The minimum width for desktop layout (1200pt).
+  static const double _breakpointDesktop = 1200;
 
-  /// Returns `true` if the screen width is >= 600pt (tablet/wide layout).
-  bool get isWide {
-    return MediaQuery.sizeOf(this).width >= _breakpointWide;
+  /// Returns `true` if the screen width is < 600pt (mobile device).
+  bool get isMobile {
+    return MediaQuery.sizeOf(this).width < _breakpointTablet;
   }
 
-  /// Returns `true` if the screen width is >= 1200pt (extended/large layout).
-  bool get isExtended {
-    return MediaQuery.sizeOf(this).width >= _breakpointExtended;
+  /// Returns `true` if the screen width is >= 600pt and < 1200pt (tablet device).
+  bool get isTablet {
+    final width = MediaQuery.sizeOf(this).width;
+    return width >= _breakpointTablet && width < _breakpointDesktop;
+  }
+
+  /// Returns `true` if the screen width is >= 1200pt (desktop device).
+  bool get isDesktop {
+    return MediaQuery.sizeOf(this).width >= _breakpointDesktop;
   }
 
   /// Returns the current screen width.
