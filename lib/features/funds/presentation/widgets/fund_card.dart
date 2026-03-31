@@ -1,7 +1,6 @@
-import 'package:btg_funds/core/core.dart' show LocalizationExtension;
-import 'package:btg_funds/core/extensions/currency_formatter.dart';
-import 'package:btg_funds/core/theme/theme.dart';
-import 'package:btg_funds/features/funds/domain/entities/fund_entity.dart';
+import 'package:btg_funds/core/core.dart'
+    show AppBorderRadius, AppSpacing, AppThemeExtension, CurrencyFormatter, LocalizationExtension;
+import 'package:btg_funds/features/funds/domain/domain.dart' show FundCategory, FundEntity;
 import 'package:flutter/material.dart';
 
 /// A card that displays a fund summary with a primary action.

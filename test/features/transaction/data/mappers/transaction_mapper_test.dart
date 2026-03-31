@@ -2,7 +2,6 @@ import 'package:btg_funds/features/transaction/data/data.dart'
     show TransactionDto, TransactionMapper;
 import 'package:btg_funds/features/transaction/domain/domain.dart'
     show NotificationMethod, TransactionEntity, TransactionType;
-import 'package:btg_funds/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

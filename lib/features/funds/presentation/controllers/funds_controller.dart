@@ -97,7 +97,7 @@ class FundsController extends _$FundsController {
         user: currentState.user,
         fundId: fundId,
         name: name,
-        minimumAmount: amount,
+        amount: amount,
       );
 
       await _saveTransactionUseCase.execute(

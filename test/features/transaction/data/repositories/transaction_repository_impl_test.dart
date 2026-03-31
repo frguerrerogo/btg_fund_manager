@@ -1,8 +1,7 @@
-import 'package:btg_funds/features/transaction/data/datasources/transaction_remote_datasource.dart';
-import 'package:btg_funds/features/transaction/data/mappers/transaction_mapper.dart';
-import 'package:btg_funds/features/transaction/data/models/transaction_dto.dart';
-import 'package:btg_funds/features/transaction/data/repositories/transaction_repository_impl.dart';
-import 'package:btg_funds/features/transaction/domain/entities/transaction_entity.dart';
+import 'package:btg_funds/features/transaction/data/data.dart'
+    show TransactionDto, TransactionMapper, TransactionRemoteDatasource, TransactionRepositoryImpl;
+import 'package:btg_funds/features/transaction/domain/domain.dart'
+    show NotificationMethod, TransactionEntity, TransactionType;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

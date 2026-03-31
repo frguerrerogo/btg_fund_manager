@@ -1,8 +1,13 @@
-import 'package:btg_funds/core/core.dart' show LocalizationExtension;
-import 'package:btg_funds/core/extensions/currency_formatter.dart';
-import 'package:btg_funds/core/extensions/date_time_formatter.dart';
-import 'package:btg_funds/core/theme/theme.dart';
-import 'package:btg_funds/features/transaction/domain/entities/transaction_entity.dart';
+import 'package:btg_funds/core/core.dart'
+    show
+        AppBorderRadius,
+        AppSpacing,
+        AppThemeExtension,
+        CurrencyFormatter,
+        DateTimeFormatter,
+        LocalizationExtension;
+import 'package:btg_funds/features/transaction/domain/domain.dart'
+    show NotificationMethod, TransactionEntity;
 import 'package:flutter/material.dart';
 
 /// A card-style row that summarizes a single transaction.

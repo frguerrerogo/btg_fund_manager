@@ -1,5 +1,3 @@
-// lib/core/widgets/adaptive_scaffold.dart
-
 import 'package:btg_funds/app/router/router.dart';
 import 'package:btg_funds/core/core.dart'
     show AppBorderRadius, AppSpacing, AppThemeExtension, LocalizationExtension;

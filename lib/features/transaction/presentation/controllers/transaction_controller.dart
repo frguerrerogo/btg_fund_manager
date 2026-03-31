@@ -1,6 +1,6 @@
 import 'package:btg_funds/core/core.dart' show getHistoryUseCaseProvider;
 import 'package:btg_funds/features/transaction/domain/domain.dart' show GetHistoryUseCase;
-import 'package:btg_funds/features/transaction/presentation/controllers/transaction_state.dart'
+import 'package:btg_funds/features/transaction/presentation/presentation.dart'
     show TransactionState;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

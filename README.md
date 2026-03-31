@@ -19,7 +19,7 @@ Aplicación móvil Flutter para la gestión de fondos de inversión (FPV/FIC) de
 
 ## 🛠 Requisitos Previos
 
-- **Flutter** 3.10.7+ ([Instalar](https://flutter.dev/docs/get-started/install))
+- **Flutter** 3.38.7 + ([Instalar](https://flutter.dev/docs/get-started/install))
 - **Dart** (incluido con Flutter)
 - **Git**, **Node.js 16+**, **npm**
 - **Android Studio/SDK** (API 24+) o **Xcode 14.3+** (según plataforma destino)

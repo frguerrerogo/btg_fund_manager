@@ -1,6 +1,5 @@
-import 'package:btg_funds/features/funds/data/mappers/fund_mapper.dart';
-import 'package:btg_funds/features/funds/data/models/fund_dto.dart';
-import 'package:btg_funds/features/funds/domain/entities/fund_entity.dart';
+import 'package:btg_funds/features/funds/data/data.dart' show FundDto, FundMapper;
+import 'package:btg_funds/features/funds/domain/domain.dart' show FundCategory, FundEntity;
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

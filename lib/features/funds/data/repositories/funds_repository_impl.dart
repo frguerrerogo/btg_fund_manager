@@ -1,7 +1,5 @@
-import 'package:btg_funds/features/funds/data/datasources/funds_remote_datasource.dart';
-import 'package:btg_funds/features/funds/data/mappers/fund_mapper.dart';
-import 'package:btg_funds/features/funds/domain/entities/fund_entity.dart';
-import 'package:btg_funds/features/funds/domain/repositories/funds_repository.dart';
+import 'package:btg_funds/features/funds/data/data.dart' show FundMapper, FundsRemoteDatasource;
+import 'package:btg_funds/features/funds/domain/domain.dart' show FundEntity, FundsRepository;
 
 /// Remote-based implementation of [FundsRepository].
 class FundsRepositoryImpl implements FundsRepository {

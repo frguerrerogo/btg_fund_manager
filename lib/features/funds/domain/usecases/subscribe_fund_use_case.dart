@@ -1,8 +1,7 @@
 import 'package:btg_funds/features/funds/domain/domain.dart'
     show AlreadySubscribedException, InsufficientBalanceException;
-import 'package:btg_funds/features/user/domain/domain.dart' show UserEntity, UserRepository;
-import 'package:btg_funds/features/user/domain/entities/active_subscription_entity.dart'
-    show ActiveSubscriptionEntity;
+import 'package:btg_funds/features/user/domain/domain.dart'
+    show ActiveSubscriptionEntity, UserEntity, UserRepository;
 
 /// Use case that subscribes a user to a fund.
 ///
@@ -15,31 +14,31 @@ class SubscribeFundUseCase {
 
   final UserRepository _userRepository;
 
-  /// Subscribes the user to the fund identified by [fundId] with [name] and [minimumAmount].
+  /// Subscribes the user to the fund identified by [fundId] with [name] and [amount].
   /// Returns a [UserEntity] with the updated subscription and balance.
   /// Throws [AlreadySubscribedException] if the user is already subscribed, or [InsufficientBalanceException] if the user has insufficient balance.
   Future<UserEntity> execute({
     required UserEntity user,
     required String fundId,
     required String name,
-    required double minimumAmount,
+    required double amount,
   }) async {
     // Validation based on user activeSubscriptions
     if (user.isSubscribedToFund(fundId)) {
       throw const AlreadySubscribedException();
     }
 
-    if (!user.hasEnoughBalance(minimumAmount)) {
+    if (!user.hasEnoughBalance(amount)) {
       throw const InsufficientBalanceException();
     }
 
-    final newBalance = user.balance - minimumAmount;
+    final newBalance = user.balance - amount;
     await _userRepository.updateBalance(newBalance);
     final updatedUser = await _userRepository.addActiveSubscription(
       ActiveSubscriptionEntity(
         fundId: fundId,
         fundName: name,
-        amount: minimumAmount,
+        amount: amount,
         subscribedAt: DateTime.now(),
       ),
     );

@@ -1,5 +1,3 @@
-// test/features/funds/domain/usecases/cancel_fund_use_case_test.dart
-
 import 'package:btg_funds/features/funds/domain/domain.dart'
     show CancelFundUseCase, NotSubscribedException;
 import 'package:btg_funds/features/user/domain/domain.dart'

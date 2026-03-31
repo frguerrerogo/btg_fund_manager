@@ -1,5 +1,3 @@
-// test/features/funds/domain/usecases/subscribe_fund_use_case_test.dart
-
 import 'package:btg_funds/features/funds/domain/domain.dart'
     show
         AlreadySubscribedException,
@@ -98,7 +96,7 @@ void main() {
           user: tUser,
           fundId: tFund.id,
           name: tFund.name,
-          minimumAmount: tFund.minimumAmount,
+          amount: tFund.minimumAmount,
         );
 
         // assert
@@ -111,7 +109,7 @@ void main() {
           user: tUser,
           fundId: tFund.id,
           name: tFund.name,
-          minimumAmount: tFund.minimumAmount,
+          amount: tFund.minimumAmount,
         );
 
         // assert
@@ -124,7 +122,7 @@ void main() {
           user: tUser,
           fundId: tFund.id,
           name: tFund.name,
-          minimumAmount: tFund.minimumAmount,
+          amount: tFund.minimumAmount,
         );
 
         // assert
@@ -145,7 +143,7 @@ void main() {
             user: userWithLowBalance,
             fundId: tFund.id,
             name: tFund.name,
-            minimumAmount: tFund.minimumAmount,
+            amount: tFund.minimumAmount,
           ),
           throwsA(isA<InsufficientBalanceException>()),
         );
@@ -160,7 +158,7 @@ void main() {
             user: tUserAlreadySubscribed,
             fundId: tFund.id,
             name: tFund.name,
-            minimumAmount: tFund.minimumAmount,
+            amount: tFund.minimumAmount,
           ),
           throwsA(isA<AlreadySubscribedException>()),
         );

@@ -1,6 +1,5 @@
-import 'package:btg_funds/core/core.dart' show LocalizationExtension;
-import 'package:btg_funds/core/theme/theme.dart';
-import 'package:btg_funds/features/transaction/domain/entities/transaction_entity.dart';
+import 'package:btg_funds/core/core.dart' show AppSpacing, AppThemeExtension, LocalizationExtension;
+import 'package:btg_funds/features/transaction/domain/domain.dart' show NotificationMethod;
 import 'package:flutter/material.dart';
 
 /// A segmented control for choosing a notification method.

@@ -1,7 +1,7 @@
-import 'package:btg_funds/features/transaction/data/datasources/transaction_remote_datasource.dart';
-import 'package:btg_funds/features/transaction/data/mappers/transaction_mapper.dart';
-import 'package:btg_funds/features/transaction/domain/entities/transaction_entity.dart';
-import 'package:btg_funds/features/transaction/domain/repositories/transaction_repository.dart';
+import 'package:btg_funds/features/transaction/data/data.dart'
+    show TransactionMapper, TransactionRemoteDatasource;
+import 'package:btg_funds/features/transaction/domain/domain.dart'
+    show TransactionEntity, TransactionRepository;
 
 /// Remote-based implementation of [TransactionRepository].
 class TransactionRepositoryImpl implements TransactionRepository {

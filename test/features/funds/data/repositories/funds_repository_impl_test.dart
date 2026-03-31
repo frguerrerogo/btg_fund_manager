@@ -1,8 +1,6 @@
-import 'package:btg_funds/features/funds/data/datasources/funds_remote_datasource.dart';
-import 'package:btg_funds/features/funds/data/mappers/fund_mapper.dart';
-import 'package:btg_funds/features/funds/data/models/fund_dto.dart';
-import 'package:btg_funds/features/funds/data/repositories/funds_repository_impl.dart';
-import 'package:btg_funds/features/funds/domain/entities/fund_entity.dart';
+import 'package:btg_funds/features/funds/data/data.dart'
+    show FundDto, FundMapper, FundsRemoteDatasource, FundsRepositoryImpl;
+import 'package:btg_funds/features/funds/domain/domain.dart' show FundCategory, FundEntity;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

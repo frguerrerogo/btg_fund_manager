@@ -1,5 +1,3 @@
-// lib/features/transaction/data/datasources/transaction_remote_datasource.dart
-
 import 'package:btg_funds/core/core.dart' show DioClient, DioExceptionMapper;
 import 'package:btg_funds/features/transaction/data/data.dart' show TransactionDto;
 import 'package:dio/dio.dart';
