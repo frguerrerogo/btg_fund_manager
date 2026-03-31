@@ -313,6 +313,42 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Ocurrió un error inesperado'**
   String get errorGeneric;
+
+  /// No description provided for @subscriptionAmountLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Monto de suscripción'**
+  String get subscriptionAmountLabel;
+
+  /// No description provided for @amountIsRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'El monto es requerido'**
+  String get amountIsRequired;
+
+  /// No description provided for @invalidAmountFormat.
+  ///
+  /// In es, this message translates to:
+  /// **'Formato de monto inválido'**
+  String get invalidAmountFormat;
+
+  /// Error message when amount is below minimum
+  ///
+  /// In es, this message translates to:
+  /// **'El monto debe ser al menos {minimumAmount}'**
+  String amountMustBeAtLeast(String minimumAmount);
+
+  /// No description provided for @minimumLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Mínimo'**
+  String get minimumLabel;
+
+  /// No description provided for @currencyCode.
+  ///
+  /// In es, this message translates to:
+  /// **'COP'**
+  String get currencyCode;
 }
 
 class _AppLocalizationsDelegate

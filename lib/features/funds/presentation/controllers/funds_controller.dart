@@ -77,14 +77,14 @@ class FundsController extends _$FundsController {
     }
   }
 
-  /// Subscribes the user to a fund with the specified [fundId], [name], and [minimumAmount].
+  /// Subscribes the user to a fund with the specified [fundId], [name], and [amount].
   /// Saves the subscription transaction and updates the fund subscription status.
   /// On business logic errors, restores the previous state while notifying listeners.
   /// Returns true if subscription was successful, false otherwise.
   Future<bool> subscribeFund({
     required String fundId,
     required String name,
-    required double minimumAmount,
+    required double amount,
     required NotificationMethod notificationMethod,
   }) async {
     if (!ref.mounted) return false;
@@ -97,7 +97,7 @@ class FundsController extends _$FundsController {
         user: currentState.user,
         fundId: fundId,
         name: name,
-        minimumAmount: minimumAmount,
+        minimumAmount: amount,
       );
 
       await _saveTransactionUseCase.execute(
@@ -105,7 +105,7 @@ class FundsController extends _$FundsController {
           id: const Uuid().v4(),
           fundId: fundId,
           fundName: name,
-          amount: minimumAmount,
+          amount: amount,
           type: TransactionType.subscription,
           notificationMethod: notificationMethod,
           createdAt: DateTime.now(),

@@ -84,5 +84,21 @@
 
   "errorConnectionIssue": "Check your internet connection",
   "errorServerIssue": "Server error. Try again later",
-  "errorGeneric": "An unexpected error occurred"
+  "errorGeneric": "An unexpected error occurred",
+
+  "subscriptionAmountLabel": "Subscription Amount",
+  "amountIsRequired": "Amount is required",
+  "invalidAmountFormat": "Invalid amount format",
+  "amountMustBeAtLeast": "Amount must be at least {minimumAmount}",
+  "@amountMustBeAtLeast": {
+    "description": "Error message when amount is below minimum",
+    "placeholders": {
+      "minimumAmount": {
+        "type": "String",
+        "example": "COP $1,500"
+      }
+    }
+  },
+  "minimumLabel": "Minimum",
+  "currencyCode": "COP"
 }

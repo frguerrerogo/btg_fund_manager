@@ -13,6 +13,8 @@ import 'package:btg_funds/core/core.dart'
 import 'package:btg_funds/features/funds/domain/domain.dart' show FundEntity;
 import 'package:btg_funds/features/funds/presentation/presentation.dart'
     show
+        AmountInputSelector,
+        AmountInputSelectorState,
         BalanceBanner,
         FundCard,
         FundsBusinessErrorMappingExtension,
@@ -179,15 +181,15 @@ class _FundsPageState extends ConsumerState<FundsPage> {
   }
 
   Future<void> _onSubscribe(FundEntity fund) async {
-    final confirmed = await _showSubscribeDialog(fund);
+    final result = await _showSubscribeDialog(fund);
+    final (confirmed, amount) = result;
     if (!confirmed) return;
-
     final success = await ref
         .read(fundsControllerProvider.notifier)
         .subscribeFund(
           fundId: fund.id,
           name: fund.name,
-          minimumAmount: fund.minimumAmount,
+          amount: amount,
           notificationMethod: _notificationMethod,
         );
 
@@ -218,10 +220,12 @@ class _FundsPageState extends ConsumerState<FundsPage> {
     }
   }
 
-  Future<bool> _showSubscribeDialog(FundEntity fund) async {
-    final selectorKey = GlobalKey<NotificationSelectorState>();
+  Future<(bool, double)> _showSubscribeDialog(FundEntity fund) async {
+    final notificationSelectorKey = GlobalKey<NotificationSelectorState>();
+    final amountSelectorKey = GlobalKey<AmountInputSelectorState>();
 
-    return await showDialog<bool>(
+    final confirmed =
+        await showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
             title: Text(context.l10n.confirmSubscriptionTitle),
@@ -230,8 +234,14 @@ class _FundsPageState extends ConsumerState<FundsPage> {
               children: [
                 Text(context.l10n.confirmSubscriptionMessage(fund.name)),
                 const SizedBox(height: AppSpacing.lg),
+                AmountInputSelector(
+                  key: amountSelectorKey,
+                  minimumAmount: fund.minimumAmount,
+                  initialAmount: fund.minimumAmount,
+                ),
+                const SizedBox(height: AppSpacing.lg),
                 NotificationSelector(
-                  key: selectorKey,
+                  key: notificationSelectorKey,
                   initialMethod: _notificationMethod,
                 ),
               ],
@@ -243,7 +253,7 @@ class _FundsPageState extends ConsumerState<FundsPage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  _notificationMethod = selectorKey.currentState!.selectedMethod;
+                  _notificationMethod = notificationSelectorKey.currentState!.selectedMethod;
                   Navigator.pop(context, true);
                 },
                 child: Text(context.l10n.confirmButtonLabel),
@@ -252,6 +262,9 @@ class _FundsPageState extends ConsumerState<FundsPage> {
           ),
         ) ??
         false;
+
+    final amount = amountSelectorKey.currentState?.selectedAmount ?? fund.minimumAmount;
+    return (confirmed, amount);
   }
 
   Future<bool> _showCancelDialog(FundEntity fund) async {

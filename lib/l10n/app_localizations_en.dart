@@ -124,4 +124,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorGeneric => 'An unexpected error occurred';
+
+  @override
+  String get subscriptionAmountLabel => 'Subscription Amount';
+
+  @override
+  String get amountIsRequired => 'Amount is required';
+
+  @override
+  String get invalidAmountFormat => 'Invalid amount format';
+
+  @override
+  String amountMustBeAtLeast(String minimumAmount) {
+    return 'Amount must be at least $minimumAmount';
+  }
+
+  @override
+  String get minimumLabel => 'Minimum';
+
+  @override
+  String get currencyCode => 'COP';
 }

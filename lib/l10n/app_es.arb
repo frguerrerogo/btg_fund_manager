@@ -84,5 +84,21 @@
 
   "errorConnectionIssue": "Revisa tu conexión a internet",
   "errorServerIssue": "Error del servidor. Intenta más tarde",
-  "errorGeneric": "Ocurrió un error inesperado"
+  "errorGeneric": "Ocurrió un error inesperado",
+
+  "subscriptionAmountLabel": "Monto de suscripción",
+  "amountIsRequired": "El monto es requerido",
+  "invalidAmountFormat": "Formato de monto inválido",
+  "amountMustBeAtLeast": "El monto debe ser al menos {minimumAmount}",
+  "@amountMustBeAtLeast": {
+    "description": "Error message when amount is below minimum",
+    "placeholders": {
+      "minimumAmount": {
+        "type": "String",
+        "example": "COP $1.500"
+      }
+    }
+  },
+  "minimumLabel": "Mínimo",
+  "currencyCode": "COP"
 }
