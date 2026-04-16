@@ -6,7 +6,7 @@ export 'constants/app_constants.dart';
 export 'di/di.dart';
 export 'extensions/extensions.dart';
 export 'network/network.dart';
-export 'providers/dio_client_provider.dart';
+export 'providers/providers.dart';
 export 'shared/mapper.dart';
 export 'theme/theme.dart';
 export 'widgets/widgets.dart';

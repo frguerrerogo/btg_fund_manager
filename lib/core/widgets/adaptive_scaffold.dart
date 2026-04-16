@@ -1,13 +1,15 @@
 import 'package:btg_funds/app/router/router.dart';
 import 'package:btg_funds/core/core.dart'
     show AppBorderRadius, AppSpacing, AppThemeExtension, LocalizationExtension;
+import 'package:btg_funds/core/providers/theme_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 /// A responsive scaffold that switches between a navigation rail and a bottom navigation bar.
 ///
 /// Provides the app shell layout and hosts the routed [child] content.
-class AdaptiveScaffold extends StatelessWidget {
+class AdaptiveScaffold extends ConsumerWidget {
   /// Creates a [AdaptiveScaffold] with the given [child].
   const AdaptiveScaffold({
     required this.child,
@@ -48,38 +50,52 @@ class AdaptiveScaffold extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = _selectedIndex(context);
     final destinations = _getDestinations(context);
+    final themeMode = ref.watch(themeControllerProvider);
+
+    Widget themeToggleButton() {
+      final isDark = themeMode == ThemeMode.dark;
+      return IconButton(
+        icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
+        tooltip: isDark ? 'Light Mode' : 'Dark Mode',
+        onPressed: () => ref.read(themeControllerProvider.notifier).toggle(),
+      );
+    }
 
     if (!context.isMobile) {
       return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: Container(
+            width: AppSpacing.avatarXl,
+            height: AppSpacing.avatarMd,
+            decoration: BoxDecoration(
+              color: context.colorScheme.primary,
+              borderRadius: AppBorderRadius.brSm,
+            ),
+            child: Center(
+              child: Text(
+                context.l10n.appLogoText,
+                style: context.textTheme.headlineLarge?.copyWith(
+                  color: context.colorScheme.onPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          actions: [
+            themeToggleButton(),
+            const SizedBox(width: AppSpacing.md),
+          ],
+        ),
         body: Row(
           children: [
             NavigationRail(
               extended: context.isDesktop,
               selectedIndex: selectedIndex,
               onDestinationSelected: (i) => _onDestinationSelected(context, i),
-              leading: Padding(
-                padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
-                child: Container(
-                  width: AppSpacing.avatarXl,
-                  height: AppSpacing.avatarMd,
-                  decoration: BoxDecoration(
-                    color: context.colorScheme.primary,
-                    borderRadius: AppBorderRadius.brSm,
-                  ),
-                  child: Center(
-                    child: Text(
-                      context.l10n.appLogoText,
-                      style: context.textTheme.headlineLarge?.copyWith(
-                        color: context.colorScheme.onPrimary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
               destinations: List.generate(destinations.length, (index) {
                 final d = destinations[index];
                 final isSelected = selectedIndex == index;
@@ -107,6 +123,30 @@ class AdaptiveScaffold extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Container(
+          width: AppSpacing.avatarXl,
+          height: AppSpacing.avatarMd,
+          decoration: BoxDecoration(
+            color: context.colorScheme.primary,
+            borderRadius: AppBorderRadius.brSm,
+          ),
+          child: Center(
+            child: Text(
+              context.l10n.appLogoText,
+              style: context.textTheme.headlineLarge?.copyWith(
+                color: context.colorScheme.onPrimary,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+        actions: [
+          themeToggleButton(),
+          const SizedBox(width: AppSpacing.md),
+        ],
+      ),
       body: child,
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
