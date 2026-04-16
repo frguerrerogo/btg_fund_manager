@@ -16,6 +16,7 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       title: 'BTG Funds',
       theme: AppTheme.light,
+      themeMode: ThemeMode.dark,
       darkTheme: AppTheme.dark,
       locale: const Locale('es'),
       routerConfig: appRouter,

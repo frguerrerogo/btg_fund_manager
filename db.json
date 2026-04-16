@@ -3,13 +3,13 @@
     {
       "id": "07FG",
       "name": "Fabian Guerrero",
-      "balance": 325000,
+      "balance": 425000,
       "active_subscriptions": [
         {
           "fund_id": "1",
           "fund_name": "FPV_BTG_PACTUAL_RECAUDADORA",
-          "amount": 175000,
-          "subscribed_at": "2026-03-31T12:43:12.747"
+          "amount": 75000,
+          "subscribed_at": "2026-04-16T08:33:34.593"
         }
       ]
     }
@@ -235,6 +235,24 @@
       "type": "subscription",
       "notification_method": "email",
       "created_at": "2026-03-31T12:43:12.802"
+    },
+    {
+      "id": "d49972ba-ac45-4772-ba2d-d469444a83e3",
+      "fund_id": "1",
+      "fund_name": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "amount": 75000,
+      "type": "cancellation",
+      "notification_method": "email",
+      "created_at": "2026-04-16T08:33:29.469"
+    },
+    {
+      "id": "71391dd3-f234-4bbd-9eaa-902eafbaf4ec",
+      "fund_id": "1",
+      "fund_name": "FPV_BTG_PACTUAL_RECAUDADORA",
+      "amount": 75000,
+      "type": "subscription",
+      "notification_method": "email",
+      "created_at": "2026-04-16T08:33:34.663"
     }
   ]
 }

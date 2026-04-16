@@ -28,7 +28,7 @@ class BalanceBanner extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(AppSpacing.lg),
       decoration: BoxDecoration(
-        color: context.colors.primary,
+        color: context.colorScheme.primary,
         borderRadius: AppBorderRadius.brMd,
       ),
       child: isMobile
@@ -59,7 +59,7 @@ class BalanceBanner extends StatelessWidget {
         Text(
           context.l10n.balanceLabel,
           style: context.textTheme.labelLarge?.copyWith(
-            color: context.colors.onPrimary,
+            color: context.colorScheme.onPrimary,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -67,7 +67,7 @@ class BalanceBanner extends StatelessWidget {
         Text(
           balance.formatCOP(),
           style: context.textTheme.displaySmall?.copyWith(
-            color: context.colors.onPrimary,
+            color: context.colorScheme.onPrimary,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -82,7 +82,7 @@ class BalanceBanner extends StatelessWidget {
         Text(
           context.l10n.subscribedFundsLabel,
           style: context.textTheme.labelLarge?.copyWith(
-            color: context.colors.onPrimary,
+            color: context.colorScheme.onPrimary,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -90,7 +90,7 @@ class BalanceBanner extends StatelessWidget {
         Text(
           '$subscribedCount',
           style: context.textTheme.displaySmall?.copyWith(
-            color: context.colors.onPrimary,
+            color: context.colorScheme.onPrimary,
             fontWeight: FontWeight.w700,
           ),
         ),

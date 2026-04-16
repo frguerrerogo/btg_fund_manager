@@ -69,7 +69,8 @@ class _FundsPageState extends ConsumerState<FundsPage> {
         title: Text(
           context.l10n.fundsPageTitle,
           style: context.textTheme.headlineLarge?.copyWith(
-            color: context.colors.primary,
+            color: context.colorScheme.primary,
+            fontWeight: FontWeight.w900,
           ),
         ),
         centerTitle: true,

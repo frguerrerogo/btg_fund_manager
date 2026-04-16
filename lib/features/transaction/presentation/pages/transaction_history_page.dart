@@ -29,7 +29,8 @@ class TransactionHistoryPage extends ConsumerWidget {
         title: Text(
           context.l10n.transactionHistoryPageTitle,
           style: context.textTheme.headlineLarge?.copyWith(
-            color: context.colors.primary,
+            color: context.colorScheme.primary,
+            fontWeight: FontWeight.w900,
           ),
         ),
         centerTitle: true,
@@ -61,13 +62,13 @@ class TransactionHistoryPage extends ConsumerWidget {
                   Icon(
                     Icons.receipt_long_outlined,
                     size: AppSpacing.iconXl2,
-                    color: context.colors.placeholder,
+                    color: context.colorScheme.primary,
                   ),
                   const SizedBox(height: AppSpacing.md),
                   Text(
                     context.l10n.emptyTransactionsList,
                     style: context.textTheme.bodyMedium?.copyWith(
-                      color: context.colors.placeholder,
+                      color: context.colorScheme.primary,
                     ),
                   ),
                 ],

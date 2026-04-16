@@ -66,14 +66,14 @@ class AdaptiveScaffold extends StatelessWidget {
                   width: AppSpacing.avatarXl,
                   height: AppSpacing.avatarMd,
                   decoration: BoxDecoration(
-                    color: context.colors.primary,
+                    color: context.colorScheme.primary,
                     borderRadius: AppBorderRadius.brSm,
                   ),
                   child: Center(
                     child: Text(
                       context.l10n.appLogoText,
                       style: context.textTheme.headlineLarge?.copyWith(
-                        color: context.colors.onPrimary,
+                        color: context.colorScheme.onPrimary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -88,11 +88,13 @@ class AdaptiveScaffold extends StatelessWidget {
                   selectedIcon: d.selectedIcon,
                   label: Text(
                     d.label,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontSize: isSelected ? 14 : 12,
-                      fontWeight: isSelected ? FontWeight.w900 : FontWeight.w700,
-                      color: isSelected ? context.colors.primary : context.colors.onSurfaceVariant,
-                    ),
+                    style: (isSelected ? context.textTheme.bodyLarge : context.textTheme.bodySmall)
+                        ?.copyWith(
+                          fontWeight: isSelected ? FontWeight.w900 : FontWeight.w700,
+                          color: isSelected
+                              ? context.colorScheme.primary
+                              : context.colorScheme.onSurfaceVariant,
+                        ),
                   ),
                 );
               }),
@@ -110,14 +112,14 @@ class AdaptiveScaffold extends StatelessWidget {
         selectedIndex: selectedIndex,
         onDestinationSelected: (i) => _onDestinationSelected(context, i),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-        indicatorColor: context.colors.onPrimary,
+        indicatorColor: context.colorScheme.onPrimary,
         destinations: List.generate(destinations.length, (index) {
           final d = destinations[index];
           return NavigationDestination(
             icon: d.icon,
             selectedIcon: Ink(
               decoration: BoxDecoration(
-                color: context.colors.onPrimary,
+                color: context.colorScheme.onPrimary,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Padding(

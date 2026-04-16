@@ -126,7 +126,7 @@ class AmountInputSelectorState extends State<AmountInputSelector> {
         Text(
           '${context.l10n.minimumLabel}: ${widget.minimumAmount.formatCOP()}',
           style: context.textTheme.bodyMedium?.copyWith(
-            color: context.colors.onSurfaceVariant,
+            color: context.colorScheme.onSurfaceVariant,
           ),
         ),
       ],

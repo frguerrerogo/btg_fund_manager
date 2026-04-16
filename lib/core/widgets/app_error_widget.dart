@@ -82,7 +82,7 @@ class AppErrorWidget extends StatelessWidget {
                 onPressed: onRetry,
                 style: TextButton.styleFrom(
                   backgroundColor: context.colors.error,
-                  foregroundColor: context.colors.onPrimary,
+                  foregroundColor: context.colorScheme.onPrimary,
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppSpacing.md,
                     vertical: AppSpacing.xs,
@@ -92,7 +92,7 @@ class AppErrorWidget extends StatelessWidget {
                 child: Text(
                   context.l10n.retryButtonLabel,
                   style: context.textTheme.bodyMedium!.copyWith(
-                    color: context.colors.onPrimary,
+                    color: context.colorScheme.onPrimary,
                   ),
                 ),
               ),
@@ -120,7 +120,7 @@ class AppErrorWidget extends StatelessWidget {
               message,
               textAlign: TextAlign.center,
               style: context.textTheme.titleLarge!.copyWith(
-                color: context.colors.onSurface,
+                color: context.colorScheme.onSurface,
               ),
             ),
             if (onRetry != null) ...[

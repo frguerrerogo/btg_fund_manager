@@ -58,7 +58,7 @@ class FundCard extends StatelessWidget {
                   Text(
                     '${context.l10n.minimumAmountLabel}: ${fund.minimumAmount.formatCOP()}',
                     style: context.textTheme.bodyMedium?.copyWith(
-                      color: context.colors.onSurfaceVariant,
+                      color: context.colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -69,10 +69,11 @@ class FundCard extends StatelessWidget {
                   child: fund.isSubscribed
                       ? OutlinedButton.icon(
                           onPressed: onCancel,
-                          icon: const Icon(Icons.cancel_outlined, size: AppSpacing.iconLg),
+                          icon: const Icon(Icons.cancel, size: AppSpacing.iconLg),
                           label: Text(
                             context.l10n.cancelButtonLabel,
                             style: context.textTheme.labelLarge?.copyWith(
+                              color: context.colors.errorContainer,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
@@ -85,16 +86,17 @@ class FundCard extends StatelessWidget {
                               color: context.colors.error,
                               width: AppSpacing.borderWidthStandard,
                             ),
-                            foregroundColor: context.colors.error,
+                            backgroundColor: context.colors.error,
+                            foregroundColor: context.colors.errorContainer,
                           ),
                         )
                       : ElevatedButton.icon(
                           onPressed: onSubscribe,
-                          icon: const Icon(Icons.add, size: AppSpacing.iconLg),
+                          icon: const Icon(Icons.add_circle, size: AppSpacing.iconLg),
                           label: Text(
                             context.l10n.subscribeButtonLabel,
                             style: context.textTheme.labelLarge?.copyWith(
-                              color: context.colors.onPrimary,
+                              color: context.colorScheme.onPrimary,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
@@ -103,8 +105,8 @@ class FundCard extends StatelessWidget {
                               horizontal: AppSpacing.lg,
                               vertical: AppSpacing.sm,
                             ),
-                            backgroundColor: context.colors.primary,
-                            foregroundColor: context.colors.onPrimary,
+                            backgroundColor: context.colorScheme.primary,
+                            foregroundColor: context.colorScheme.onPrimary,
                           ),
                         ),
                 ),
@@ -124,20 +126,20 @@ class _CategoryBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isFpv = category == FundCategory.fpv;
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.md,
         vertical: AppSpacing.xs,
       ),
       decoration: BoxDecoration(
-        color: isFpv ? context.colors.successContainer : context.colors.infoContainer,
+        color: context.colorScheme.primary,
         borderRadius: AppBorderRadius.chip,
       ),
       child: Text(
-        isFpv ? context.l10n.fundCategoryFpv : context.l10n.fundCategoryFic,
+        context.l10n.fundCategoryFic,
         style: context.textTheme.labelMedium?.copyWith(
-          color: isFpv ? context.colors.success : context.colors.info,
+          color: context.colorScheme.primaryContainer,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

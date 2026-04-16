@@ -69,7 +69,7 @@ class TransactionTile extends StatelessWidget {
                   Text(
                     '${context.l10n.notificationMethodLabel}: ${transaction.notificationMethod == NotificationMethod.email ? context.l10n.notificationMethodEmail : context.l10n.notificationMethodSms}',
                     style: context.textTheme.bodySmall?.copyWith(
-                      color: context.colors.onSurfaceVariant,
+                      color: context.colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -89,7 +89,7 @@ class TransactionTile extends StatelessWidget {
                   transaction.createdAt.formatTransactionDateTime(),
                   style: context.textTheme.labelSmall?.copyWith(
                     fontWeight: FontWeight.w700,
-                    color: context.colors.onSurfaceVariant,
+                    color: context.colorScheme.onSurfaceVariant,
                   ),
                 ),
               ],
