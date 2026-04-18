@@ -6,45 +6,75 @@ on:
       - main
       - develop
   pull_request:
-    branches:
-      - main
-      - develop
+
+env:
+  FLUTTER_VERSION: "3.38.7"
 
 jobs:
   build:
+    name: Build APK & Web
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout
+      # 1. Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🐦 Setup Flutter
+      # 2. Setup Java (necesario para Android)
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      # 3. Cache Flutter + Pub
+      - name: Cache Flutter
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ${{ runner.tool_cache }}/flutter
+          key: ${{ runner.os }}-flutter-${{ env.FLUTTER_VERSION }}
+
+      # 4. Instalar Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.38.7
+          flutter-version: ${{ env.FLUTTER_VERSION }}
 
-      - name: 📦 Install dependencies
+      # 5. Verificar instalación
+      - name: Flutter doctor
+        run: flutter doctor
+
+      # 6. Instalar dependencias
+      - name: Install dependencies
         run: flutter pub get
 
-      - name: 🔍 Analyze code
+      # 7. Análisis estático
+      - name: Analyze project
         run: flutter analyze
 
-      - name: 🧪 Run tests
+      # 8. Tests (opcional pero pro)
+      - name: Run tests
         run: flutter test
 
-      - name: 📱 Build APK
+      # 9. Build APK
+      - name: Build APK (release)
         run: flutter build apk --release
 
-      - name: 🌐 Build Web
+      # 10. Build Web
+      - name: Build Web
         run: flutter build web
 
-      - name: 📦 Upload APK
+      # 11. Subir APK como artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-apk
           path: build/app/outputs/flutter-apk/app-release.apk
 
-      - name: 📦 Upload Web
+      # 12. Subir Web como artifact
+      - name: Upload Web
         uses: actions/upload-artifact@v4
         with:
           name: web-build
