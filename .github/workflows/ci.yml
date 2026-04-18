@@ -1,18 +1,16 @@
-name: Flutter CI/CD
+name: Flutter CI Pipeline
 
 on:
   push:
     branches:
       - main
-      - develop
-  pull_request:
 
 env:
   FLUTTER_VERSION: "3.38.7"
 
 jobs:
   build:
-    name: Build APK & Web
+    name: flutter-build-apk-web
     runs-on: ubuntu-latest
 
     steps:
