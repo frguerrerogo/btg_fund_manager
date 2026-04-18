@@ -114,7 +114,7 @@ Si necesitas configurar URLs de API, puedes crear un archivo `.env` en la raíz 
 
 | Tech | Propósito |
 |------|-----------|
-| **Flutter 3.10.7** | Framework móvil |
+| **Flutter 3.38.7** | Framework móvil |
 | **Dart 3.x** | Lenguaje |
 | **Riverpod 3.0.3** | State management |
 | **Go Router 16.3.0** | Navegación |
