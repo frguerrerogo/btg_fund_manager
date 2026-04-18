@@ -19,11 +19,33 @@ jobs:
         with:
           flutter-version: "3.38.7"
 
-      - name: Install dependencies
+  - name: 📦 Install dependencies
         run: flutter pub get
 
-      - name: Analyze code
+      - name: 🔍 Analyze code
         run: flutter analyze
 
-      - name: Run tests
+      - name: 🧪 Run tests
         run: flutter test
+
+      # 📱 BUILD APK
+      - name: 📱 Build APK
+        run: flutter build apk --release
+
+      # 🌐 BUILD WEB
+      - name: 🌐 Build Web
+        run: flutter build web
+
+      # 📦 Upload APK
+      - name: 📦 Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      # 📦 Upload Web
+      - name: 📦 Upload Web
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: build/web
