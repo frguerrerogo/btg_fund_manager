@@ -1,14 +1,22 @@
 #!/bin/sh
+set -e
 
 COMMIT_MSG_FILE="$1"
 
-# Filtrar líneas de comentario
-MESSAGE=$(grep -v '^#' "$COMMIT_MSG_FILE" | tr -d '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+MESSAGE=$(grep -v '^#' "$COMMIT_MSG_FILE" | sed '/^$/d' | head -1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
-if ! echo "$MESSAGE" | grep -qE '^(Merge|feat|fix|docs|style|refactor|test|chore)(\(.+\))?: .+'; then
-  echo "❌ Commit message must follow Conventional Commits."
-  echo "💡 Example: feat(auth): add login validation"
+if [ -z "$MESSAGE" ]; then
+  echo "❌ Commit message is empty. Example: feat(auth): add login validation" >&2
   exit 1
 fi
 
-echo "✅ Commit message is valid."
+if echo "$MESSAGE" | grep -Eiq '^(Merge|Revert|merge|revert)'; then
+  exit 0
+fi
+
+PATTERN='^(feat|fix|docs|style|refactor|test|chore)(\([a-zA-Z0-9_-]+\))?: .+'
+
+if ! echo "$MESSAGE" | grep -Eq "$PATTERN"; then
+  echo "❌ Bad commit: \"$MESSAGE\" — use feat(scope): description" >&2
+  exit 1
+fi

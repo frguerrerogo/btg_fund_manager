@@ -64,7 +64,8 @@ flutter run
 
 **OBLIGATORIO - Configurar antes del primer commit:**
 ```bash
-git config core.hooksPath githooks
+git add githooks/pre-commit githooks/commit-msg
+git update-index --chmod=+x githooks/pre-commit githooks/commit-msg
 ```
 
 Este comando activa los siguientes hooks automáticos:
@@ -75,6 +76,7 @@ Este comando activa los siguientes hooks automáticos:
 > ⚠️ Si no configuras esto, tus commits será rechazados por los hooks.
 >
 > Si necesitas saltarte temporalmente: `git commit --no-verify`
+
 
 ## 🏗 Estructura del Proyecto
 
