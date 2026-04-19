@@ -19,7 +19,7 @@ Aplicación móvil Flutter para la gestión de fondos de inversión (FPV/FIC) de
 
 ## 🛠 Requisitos Previos
 
-- **Flutter** 3.38.7 + ([Instalar](https://flutter.dev/docs/get-started/install))
+- **Flutter** 3.38.7+ ([Instalar](https://flutter.dev/docs/get-started/install))
 - **Dart** (incluido con Flutter)
 - **Git**, **Node.js 16+**, **npm**
 - **Android Studio/SDK** (API 24+) o **Xcode 14.3+** (según plataforma destino)
@@ -28,7 +28,7 @@ Aplicación móvil Flutter para la gestión de fondos de inversión (FPV/FIC) de
 
 ```bash
 # Clonar y entrar al directorio
-git clone https://https://gitlab.com/frguerrerogo/btg_fund_manager
+git clone https://github.com/frguerrerogo/btg_fund_manager
 cd btg_fund_manager
 
 # Instalar dependencias
@@ -37,6 +37,7 @@ flutter pub get
 # Generar archivos (si modificaste modelos de datos)
 flutter pub run build_runner build --delete-conflicting-outputs
 
+# Modo observador (ejecuta automáticamente al detectar cambios en modelos)
 flutter pub run build_runner watch
 ```
 
@@ -58,6 +59,22 @@ flutter run
 ```
 
 > **Alternativa:** Presiona `F5` (launch.json configurado con BTGFunds • DEV)
+
+## 🪝 Git Hooks
+
+**OBLIGATORIO - Configurar antes del primer commit:**
+```bash
+git config core.hooksPath githooks
+```
+
+Este comando activa los siguientes hooks automáticos:
+
+- **Pre-commit**: Ejecuta `flutter analyze` y `flutter test` en cada commit
+- **Commit-msg**: Valida el formato del mensaje (feat:, fix:, refactor:, etc.)
+
+> ⚠️ Si no configuras esto, tus commits será rechazados por los hooks.
+>
+> Si necesitas saltarte temporalmente: `git commit --no-verify`
 
 ## 🏗 Estructura del Proyecto
 
@@ -114,7 +131,7 @@ Si necesitas configurar URLs de API, puedes crear un archivo `.env` en la raíz 
 
 | Tech | Propósito |
 |------|-----------|
-| **Flutter 3.10.7** | Framework móvil |
+| **Flutter 3.38.7** | Framework móvil |
 | **Dart 3.x** | Lenguaje |
 | **Riverpod 3.0.3** | State management |
 | **Go Router 16.3.0** | Navegación |
@@ -134,24 +151,13 @@ flutter build appbundle    # Android (Play Store)
 flutter build ios          # iOS
 ```
 
-## 🪝 Git Hooks
-
-Configurar **una sola vez**:
-```bash
-git config core.hooksPath githooks
-```
-
-- **Pre-commit**: Ejecuta `flutter analyze` y `flutter test` automáticamente
-- **Commit-msg**: Valida formato (feat:, fix:, refactor:, etc.)
-
-Saltarse si es necesario: `git commit --no-verify`
 ## 👤 Autor y Contacto
 
 **Desarrollador**: Fabian Guerrero
 
 Para preguntas o soporte, puedes contactarme en:
 
-- **Email**: [frguerrerogo@gmail.com](frguerrerogo@gmail.com)
+- **Email**: [frguerrerogo@gmail.com](mailto:frguerrerogo@gmail.com)
 - **LinkedIn**: [frguerrerogo](https://www.linkedin.com/in/frguerrerogo/)
 
-**Última actualización:** Marzo 23 de 2026
+**Última actualización:** Abril 19 de 2026
