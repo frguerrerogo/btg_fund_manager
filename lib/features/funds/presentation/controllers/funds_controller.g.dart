@@ -36,7 +36,7 @@ final class FundsControllerProvider
   FundsController create() => FundsController();
 }
 
-String _$fundsControllerHash() => r'3b75d4069ab848f35469a3424173eb8776ef2288';
+String _$fundsControllerHash() => r'937b9e04216798759626ec4ec616dfbe47911229';
 
 /// Controller that manages [FundsState] state for the funds feature.
 

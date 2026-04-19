@@ -1,13 +1,22 @@
 #!/bin/sh
+set -e
 
-# Check if fvm is available
-if command -v fvm &> /dev/null; then
-  FVM_PREFIX="fvm "
-else
-  FVM_PREFIX=""
+COMMIT_MSG_FILE="$1"
+
+MESSAGE=$(grep -v '^#' "$COMMIT_MSG_FILE" | sed '/^$/d' | head -1 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+if [ -z "$MESSAGE" ]; then
+  echo "❌ Commit message is empty. Example: feat(auth): add login validation" >&2
+  exit 1
 fi
 
-${FVM_PREFIX}dart tool/commit_lint.dart "$1"
-if [ $? -ne 0 ]; then
+if echo "$MESSAGE" | grep -Eiq '^(Merge|Revert|merge|revert)'; then
+  exit 0
+fi
+
+PATTERN='^(feat|fix|docs|style|refactor|test|chore)(\([a-zA-Z0-9_-]+\))?: .+'
+
+if ! echo "$MESSAGE" | grep -Eq "$PATTERN"; then
+  echo "❌ Bad commit: \"$MESSAGE\" — use feat(scope): description" >&2
   exit 1
 fi
