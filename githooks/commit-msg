@@ -1,13 +1,14 @@
 #!/bin/sh
 
-# Check if fvm is available
-if command -v fvm &> /dev/null; then
-  FVM_PREFIX="fvm "
-else
-  FVM_PREFIX=""
-fi
+COMMIT_MSG_FILE="$1"
 
-${FVM_PREFIX}dart tool/commit_lint.dart "$1"
-if [ $? -ne 0 ]; then
+# Filtrar líneas de comentario
+MESSAGE=$(grep -v '^#' "$COMMIT_MSG_FILE" | tr -d '\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+if ! echo "$MESSAGE" | grep -qE '^(Merge|feat|fix|docs|style|refactor|test|chore)(\(.+\))?: .+'; then
+  echo "❌ Commit message must follow Conventional Commits."
+  echo "💡 Example: feat(auth): add login validation"
   exit 1
 fi
+
+echo "✅ Commit message is valid."
