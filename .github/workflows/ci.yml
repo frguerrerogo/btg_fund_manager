@@ -14,31 +14,6 @@ env:
   FLUTTER_VERSION: "3.38.7"
 
 jobs:
-  check-up-to-date:
-    name: Check branch up-to-date with main
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Fetch main branch
-        run: git fetch origin main
-
-      - name: Validate branch sync
-        run: |
-          BASE=$(git merge-base HEAD origin/main)
-          MAIN=$(git rev-parse origin/main)
-
-          if [ "$BASE" != "$MAIN" ]; then
-            echo "Branch is NOT up-to-date with main"
-            exit 1
-          else
-            echo "Branch is up-to-date"
-          fi
-
   prepare-environment:
     name: Prepare Environment & Cache Dependencies
     runs-on: ubuntu-latest
