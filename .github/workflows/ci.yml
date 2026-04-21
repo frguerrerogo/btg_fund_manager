@@ -14,6 +14,31 @@ env:
   FLUTTER_VERSION: "3.38.7"
 
 jobs:
+  check-up-to-date:
+    name: Check branch up-to-date with main
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch main branch
+        run: git fetch origin main
+
+      - name: Validate branch sync
+        run: |
+          BASE=$(git merge-base HEAD origin/main)
+          MAIN=$(git rev-parse origin/main)
+
+          if [ "$BASE" != "$MAIN" ]; then
+            echo "Branch is NOT up-to-date with main"
+            exit 1
+          else
+            echo "Branch is up-to-date"
+          fi
+
   prepare-environment:
     name: Prepare Environment & Cache Dependencies
     runs-on: ubuntu-latest
@@ -44,7 +69,7 @@ jobs:
   code-analysis:
     name: Static Code Analysis (Lint)
     runs-on: ubuntu-latest
-    needs: prepare-environment
+    needs: [prepare-environment, check-up-to-date]
 
     steps:
       - name: Checkout repository
@@ -64,7 +89,7 @@ jobs:
   run-tests:
     name: Execute Tests with Coverage
     runs-on: ubuntu-latest
-    needs: prepare-environment
+    needs: [prepare-environment, check-up-to-date]
 
     steps:
       - name: Checkout repository
@@ -97,7 +122,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Java (required for Android build)
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: "temurin"
@@ -111,7 +136,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build Android APK (release)
+      - name: Build Android APK
         run: flutter build apk --release
 
       - name: Build Web application
