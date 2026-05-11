@@ -5,7 +5,11 @@ class AppConstants {
   AppConstants._();
 
   /// Base URL used by [DioClient] to construct all API request URLs.
-  static const String baseUrl = 'http://localhost:3000';
+  ///
+  static const String baseUrl =
+      'http://27bmxmhguu.execute-api.localhost.localstack.cloud:4566/dev/';
+
+  /// static const String baseUrl = 'http://localhost:3000';
   //static const String baseUrl = 'http://10.0.2.2:3000';
 
   /// Default user identifier used in API requests and user-specific operations.
